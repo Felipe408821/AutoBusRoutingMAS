@@ -1,0 +1,5 @@
+logs_passengers_generation
+['pasajero','hora','inicio','ref_inicio','destino','ref_destino','
+'],['passenger(0)','00:00:10','Carretera del Plantío - Estación Majadahonda','07304','Doctor Calero - Nicaragua','06235','
+'],['passenger(1)','00:00:10','Doctor Calero - Nicaragua','06235','Químicos - C.C. Gran Plaza 2','20611','
+']

@@ -1,0 +1,11 @@
+logs_ruta_dinamicas
+[100.0,'bus_stop(113)','cfp to cover bus_stop(1)','Num of passengers 21','cfp sended to [bus(0)]','
+'],[100.0,'bus_stop(113)','current situation map([bus_stop(1)::21])','
+'],[101.0,'bus(0)','652A','2. receives a cfp message from bus_stop(113)','With content [\'[PARADA] Solicitud de apoyo\',bus_stop(1),21,bus_stop(113)]','
+'],[101.0,'bus(0)','652A','2.1 sends a propose message to  bus_stop(113)','Message [\'[PARADA] Solicitud de apoyo\',bus_stop(1),21,bus_stop(113)]','
+'],[101.0,'bus_stop(113)','3. Receives propose messages'],[101.0,'bus_stop(113)','3. Receives a propose message from bus(0)','Content [\'[BUS] Disponible\',3.2006398801859546,bus_stop(1)]','
+'],[101.0,'bus_stop(113)','3. Sends a accept_proposal message to bus(0)','
+'],[102.0,'bus(0)','652A','3 receives a accept_proposal message from  bus_stop(113)','Content [bus_stop(113),bus_stop(1)]','
+'],[102.0,'bus(0)','652A',' sends an inform_done message to bus_stop(113)',' content message[sender: Av. Reyes Católicos - Panamá, receivers: [bus0], performative: accept_proposal, content: [Av. Reyes Católicos - Panamá, Químicos - C.C. Gran Plaza 2], content]','
+'],[102.0,'bus_stop(113)','4. Receives a inform message from bus(0)','Content [\'[BUS] Ruta dinámica incorporada\']','
+']

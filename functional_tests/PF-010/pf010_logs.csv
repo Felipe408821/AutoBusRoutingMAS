@@ -1,0 +1,146 @@
+logs
+[13.0,'bus(0)','652A','Located at bus_stop(152)','Carretera del Plantío - Club de Tenis','Seats available 86','Route [bus_stop(153),bus_stop(97),bus_stop(136),bus_stop(135),bus_stop(137),bus_stop(139),bus_stop(128),bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[13.0,'bus(0)','652A','Located at bus_stop(152)','Carretera del Plantío - Club de Tenis','Waiting passengers []'],[
+],[37.0,'bus(0)','652A','Located at bus_stop(153)','Carretera del Plantío - Urbanización La Sacedilla','Seats available 86','Route [bus_stop(97),bus_stop(136),bus_stop(135),bus_stop(137),bus_stop(139),bus_stop(128),bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[37.0,'bus(0)','652A','Located at bus_stop(153)','Carretera del Plantío - Urbanización La Sacedilla','Waiting passengers []'],[
+],[62.0,'bus(0)','652A','Located at bus_stop(97)','Carretera del Plantío - Estación Majadahonda','Seats available 86','Route [bus_stop(136),bus_stop(135),bus_stop(137),bus_stop(139),bus_stop(128),bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[62.0,'bus(0)','652A','Located at bus_stop(97)','Carretera del Plantío - Estación Majadahonda','Waiting passengers []'],[
+],[
+],[
+],[
+],[
+],[
+],[
+],[
+],[
+],[
+],[
+],[
+],[
+],[
+],[
+],[
+],[
+],[110.0,'bus(0)','652A','Located at bus_stop(136)','Carretera del Plantío - Los Sauces','Seats available 86','Route [bus_stop(135),bus_stop(137),bus_stop(139),bus_stop(128),bus_stop(113),bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[110.0,'bus(0)','652A','Located at bus_stop(136)','Carretera del Plantío - Los Sauces','Waiting passengers []'],[
+],[154.0,'bus(0)','652A','Located at bus_stop(135)','Carretera del Plantío - Novotiendas','Seats available 86','Route [bus_stop(137),bus_stop(139),bus_stop(128),bus_stop(113),bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[154.0,'bus(0)','652A','Located at bus_stop(135)','Carretera del Plantío - Novotiendas','Waiting passengers []'],[
+],[186.0,'bus(0)','652A','Located at bus_stop(137)','Ctra. Plantío - Cerro del Aire','Seats available 86','Route [bus_stop(139),bus_stop(128),bus_stop(113),bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[186.0,'bus(0)','652A','Located at bus_stop(137)','Ctra. Plantío - Cerro del Aire','Waiting passengers []'],[
+],[221.0,'bus(0)','652A','Located at bus_stop(139)','Doctor Calero - Nicaragua','Seats available 86','Route [bus_stop(128),bus_stop(113),bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[221.0,'bus(0)','652A','Located at bus_stop(139)','Doctor Calero - Nicaragua','Waiting passengers []'],[
+],[256.0,'bus(0)','652A','Located at bus_stop(128)','Doctor Calero - Jardinillos','Seats available 86','Route [bus_stop(113),bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[256.0,'bus(0)','652A','Located at bus_stop(128)','Doctor Calero - Jardinillos','Waiting passengers []'],[
+],[291.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Seats available 86','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[291.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Waiting passengers [passenger(11),passenger(8),passenger(19),passenger(12),passenger(0),passenger(14),passenger(2),passenger(17),passenger(6),passenger(20),passenger(4),passenger(13),passenger(18),passenger(5),passenger(16),passenger(7),passenger(15),passenger(1),passenger(3),passenger(9),passenger(10)]'],[
+],[292.0,'passenger(0)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(0)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(1)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(1)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(2)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(2)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(3)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(3)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(4)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(4)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(5)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(5)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(6)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(6)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(7)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(7)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(8)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(8)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(9)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(9)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(10)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(10)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(11)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(11)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(12)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(12)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(13)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(13)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(14)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(14)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(15)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(15)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(16)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(16)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(17)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(17)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(18)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(18)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(19)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(19)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(20)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Destination bus_stop(1)','Find available direct bus bus(0)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'passenger(20)','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Propose to board bus(0)','Destination bus_stop(1)','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(0)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(1)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(2)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(3)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(4)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(5)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(6)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(7)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(8)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(9)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(10)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(11)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(12)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(13)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(14)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(15)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(16)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(17)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(18)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(19)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[292.0,'bus(0)','652A','Located at bus_stop(113)','Av. Reyes Católicos - Panamá','Receives passenger(20)','Destination [bus_stop(1)]','Route [bus_stop(133),bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[335.0,'bus(0)','652A','Located at bus_stop(133)','Av. Doctor Marañón - Pza. Laguna Vieja','Seats available 65','Route [bus_stop(132),bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[335.0,'bus(0)','652A','Located at bus_stop(133)','Av. Doctor Marañón - Pza. Laguna Vieja','Waiting passengers []'],[
+],[360.0,'bus(0)','652A','Located at bus_stop(132)','Av. Doctor Marañón - Dr. Jiménez Díaz','Seats available 65','Route [bus_stop(88),bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[360.0,'bus(0)','652A','Located at bus_stop(132)','Av. Doctor Marañón - Dr. Jiménez Díaz','Waiting passengers []'],[
+],[377.0,'bus(0)','652A','Located at bus_stop(88)','Av. Doctor Marañón - Charaima','Seats available 65','Route [bus_stop(144),bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[377.0,'bus(0)','652A','Located at bus_stop(88)','Av. Doctor Marañón - Charaima','Waiting passengers []'],[
+],[405.0,'bus(0)','652A','Located at bus_stop(144)','Av. Doctor Marañón - Av. Guadarrama','Seats available 65','Route [bus_stop(6),bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[405.0,'bus(0)','652A','Located at bus_stop(144)','Av. Doctor Marañón - Av. Guadarrama','Waiting passengers []'],[
+],[433.0,'bus(0)','652A','Located at bus_stop(6)','Antonio Machado - Miguel Hernández','Seats available 65','Route [bus_stop(5),bus_stop(7),bus_stop(1)]'],[
+],[433.0,'bus(0)','652A','Located at bus_stop(6)','Antonio Machado - Miguel Hernández','Waiting passengers []'],[
+],[469.0,'bus(0)','652A','Located at bus_stop(5)','Antonio Machado - Granja del Conde','Seats available 65','Route [bus_stop(7),bus_stop(1)]'],[
+],[469.0,'bus(0)','652A','Located at bus_stop(5)','Antonio Machado - Granja del Conde','Waiting passengers []'],[
+],[506.0,'bus(0)','652A','Located at bus_stop(7)','Arco de Poniente - Carretera Villanueva del Pardillo','Seats available 65','Route [bus_stop(1)]'],[
+],[506.0,'bus(0)','652A','Located at bus_stop(7)','Arco de Poniente - Carretera Villanueva del Pardillo','Waiting passengers []'],[
+],[614.0,'bus(1)','651A','Located at bus_stop(152)','Carretera del Plantío - Club de Tenis','Seats available 86','Route [bus_stop(153),bus_stop(97),bus_stop(136),bus_stop(135),bus_stop(137),bus_stop(139),bus_stop(128),bus_stop(0),bus_stop(113),bus_stop(79),bus_stop(155),bus_stop(157),bus_stop(156),bus_stop(159),bus_stop(165),bus_stop(161),bus_stop(162),bus_stop(166),bus_stop(140),bus_stop(167),bus_stop(180),bus_stop(164),bus_stop(163),bus_stop(94)]'],[
+],[614.0,'bus(1)','651A','Located at bus_stop(152)','Carretera del Plantío - Club de Tenis','Waiting passengers []'],[
+],[622.0,'bus(2)','651B','Located at bus_stop(105)','Avenida España - El Zoco','Seats available 86','Route [bus_stop(176),bus_stop(177),bus_stop(181),bus_stop(179),bus_stop(178),bus_stop(173),bus_stop(3),bus_stop(158),bus_stop(168),bus_stop(170),bus_stop(169),bus_stop(114),bus_stop(108),bus_stop(89),bus_stop(150),bus_stop(145),bus_stop(146),bus_stop(147),bus_stop(152)]'],[
+],[622.0,'bus(2)','651B','Located at bus_stop(105)','Avenida España - El Zoco','Waiting passengers []'],[
+],[638.0,'bus(1)','651A','Located at bus_stop(153)','Carretera del Plantío - Urbanización La Sacedilla','Seats available 86','Route [bus_stop(97),bus_stop(136),bus_stop(135),bus_stop(137),bus_stop(139),bus_stop(128),bus_stop(0),bus_stop(113),bus_stop(79),bus_stop(155),bus_stop(157),bus_stop(156),bus_stop(159),bus_stop(165),bus_stop(161),bus_stop(162),bus_stop(166),bus_stop(140),bus_stop(167),bus_stop(180),bus_stop(164),bus_stop(163),bus_stop(94)]'],[
+],[638.0,'bus(1)','651A','Located at bus_stop(153)','Carretera del Plantío - Urbanización La Sacedilla','Waiting passengers []'],[
+],[657.0,'bus(2)','651B','Located at bus_stop(176)','Francisco Umbral - Ctra. Boadilla','Seats available 86','Route [bus_stop(177),bus_stop(181),bus_stop(179),bus_stop(178),bus_stop(173),bus_stop(3),bus_stop(158),bus_stop(168),bus_stop(170),bus_stop(169),bus_stop(114),bus_stop(108),bus_stop(89),bus_stop(150),bus_stop(145),bus_stop(146),bus_stop(147),bus_stop(152)]'],[
+],[657.0,'bus(2)','651B','Located at bus_stop(176)','Francisco Umbral - Ctra. Boadilla','Waiting passengers []'],[
+],[663.0,'bus(1)','651A','Located at bus_stop(97)','Carretera del Plantío - Estación Majadahonda','Seats available 86','Route [bus_stop(136),bus_stop(135),bus_stop(137),bus_stop(139),bus_stop(128),bus_stop(0),bus_stop(113),bus_stop(79),bus_stop(155),bus_stop(157),bus_stop(156),bus_stop(159),bus_stop(165),bus_stop(161),bus_stop(162),bus_stop(166),bus_stop(140),bus_stop(167),bus_stop(180),bus_stop(164),bus_stop(163),bus_stop(94)]'],[
+],[663.0,'bus(1)','651A','Located at bus_stop(97)','Carretera del Plantío - Estación Majadahonda','Waiting passengers []'],[
+],[689.0,'bus(2)','651B','Located at bus_stop(177)','Neptuno - Alcalde Aurelio Tallón','Seats available 86','Route [bus_stop(181),bus_stop(179),bus_stop(178),bus_stop(173),bus_stop(3),bus_stop(158),bus_stop(168),bus_stop(170),bus_stop(169),bus_stop(114),bus_stop(108),bus_stop(89),bus_stop(150),bus_stop(145),bus_stop(146),bus_stop(147),bus_stop(152)]'],[
+],[689.0,'bus(2)','651B','Located at bus_stop(177)','Neptuno - Alcalde Aurelio Tallón','Waiting passengers []'],[
+],[694.0,'bus(0)','652A','Passenger passenger(0)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(1)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(2)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(3)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(4)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(5)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(6)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(7)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(8)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(9)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(10)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(11)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(12)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(13)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(14)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(15)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(16)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(17)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(18)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(19)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+],[694.0,'bus(0)','652A','Passenger passenger(20)','Gets off at his destination bus_stop(1)','Químicos - C.C. Gran Plaza 2','Itinerary of the passenger [bus_stop(1)]'],[
+]

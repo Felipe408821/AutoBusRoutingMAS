@@ -1,0 +1,11 @@
+logs_ruta_dinamicas
+[50.0,'bus_stop(128)','cfp to cover bus_stop(1)','Num of passengers 100','cfp sended to [bus(0)]','
+'],[50.0,'bus_stop(128)','current situation map([bus_stop(1)::100])','
+'],[51.0,'bus(0)','652A','2. receives a cfp message from bus_stop(128)','With content [\'[PARADA] Solicitud de apoyo\',bus_stop(1),100,bus_stop(128)]','
+'],[51.0,'bus_stop(128)','3. Receives propose messages','
+'],[51.0,'bus_stop(128)','3. Receives a propose message from bus(0)','Content [\'[BUS] No me encuentro disponible\',-1,bus_stop(1)]','
+'],[51.0,'bus_stop(128)','3. Sends a accept_proposal message to bus(0)','
+'],[52.0,'bus(0)','652A','3 receives a accept_proposal message from  bus_stop(128)','Content [bus_stop(128),bus_stop(1)]','
+'],[52.0,'bus(0)','652A',' sends an inform_done message to bus_stop(128)',' content message[sender: Doctor Calero - Jardinillos, receivers: [bus0], performative: accept_proposal, content: [Doctor Calero - Jardinillos, Químicos - C.C. Gran Plaza 2], content]','
+'],[52.0,'bus_stop(128)','4. Receives a inform message from bus(0)','Content [\'[BUS] Ruta dinámica incorporada\']','
+']

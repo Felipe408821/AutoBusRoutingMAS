@@ -1,0 +1,6 @@
+logs_bus_results
+['bus','linea','hora','ruta_finalizada','num_pasajeros','
+'],['bus(0)','652A','647.0',true,0,'
+'],['bus(1)','651A',nil,false,0,'
+'],['bus(2)','651B',nil,false,0,'
+']
