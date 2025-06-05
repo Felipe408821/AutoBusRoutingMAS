@@ -162,7 +162,7 @@ PARADA DESTINO: bus_stop 78 (PARADA INICIO: bus_stop 47)
     - Tiempo respuesta: 2.0 min
 
 RESUMEN ESTADÍSTICO
-- Paradas dinámicas creadas: 10
+- Rutas dinámicas creadas: 10
 - Asignaciones totales: 25
 - Bus más activo: 8 (Línea DYNA) con 3 asignaciones
 

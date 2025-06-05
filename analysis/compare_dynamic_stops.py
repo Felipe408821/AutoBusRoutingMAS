@@ -80,7 +80,7 @@ def generar_reporte(resultados, nombre_archivo):
             buses_utilizados[a['bus_asignado']] += 1
 
     reporte += "RESUMEN ESTADÍSTICO\n"
-    reporte += f"- Paradas dinámicas creadas: {len(resultados)}\n"
+    reporte += f"- Rutas dinámicas creadas: {len(resultados)}\n"
     reporte += f"- Asignaciones totales: {total_asign}\n"
 
     if buses_utilizados:
@@ -185,8 +185,7 @@ if __name__ == "__main__":
         'experimental_tests/BDI_01_IC',
         'experimental_tests/BDI_02',
         'experimental_tests/BDI_03',
-        'experimental_tests/BDI_01_DY',
-        'experimental_tests/BDI_01_RE'
+        'experimental_tests/BDI_01_DY'
     ]
 
     procesar_multiples_carpetas(carpetas_a_procesar)

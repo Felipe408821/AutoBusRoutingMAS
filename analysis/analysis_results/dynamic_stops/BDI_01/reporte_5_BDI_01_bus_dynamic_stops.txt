@@ -327,7 +327,7 @@ PARADA DESTINO: bus_stop 36 (PARADA INICIO: bus_stop 116)
     - Tiempo respuesta: 3.0 min
 
 RESUMEN ESTADÍSTICO
-- Paradas dinámicas creadas: 19
+- Rutas dinámicas creadas: 19
 - Asignaciones totales: 51
 - Bus más activo: 3 (Línea 652B) con 6 asignaciones
 

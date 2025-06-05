@@ -16,7 +16,7 @@ PARADA DESTINO: bus_stop 1 (PARADA INICIO: bus_stop 152)
     - Tiempo respuesta: 3.0 min
 
 RESUMEN ESTADÍSTICO
-- Paradas dinámicas creadas: 2
+- Rutas dinámicas creadas: 2
 - Asignaciones totales: 2
 - Bus más activo: 12 (Línea 651A) con 1 asignaciones
 

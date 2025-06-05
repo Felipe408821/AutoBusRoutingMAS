@@ -322,7 +322,7 @@ PARADA DESTINO: bus_stop 171 (PARADA INICIO: bus_stop 116)
     - Tiempo respuesta: 2.0 min
 
 RESUMEN ESTADÍSTICO
-- Paradas dinámicas creadas: 20
+- Rutas dinámicas creadas: 20
 - Asignaciones totales: 50
 - Bus más activo: 22 (Línea L1) con 8 asignaciones
 

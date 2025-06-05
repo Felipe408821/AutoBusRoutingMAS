@@ -1,883 +1,787 @@
 ======================================================================
                 INFORME DETALLADO DE RUTAS DE AUTOBÚS                 
 ======================================================================
+Total de archivos procesados: 30/30
+Total de rutas diferentes: 121
 
-Fecha de generación: 2025-06-05 11:41:09
-Total de archivos procesados: 30
-Total de rutas diferentes encontradas: 121
+======================================================================
+                       ESTADÍSTICAS POR MODELO                        
+======================================================================
+
+Modelo BDI_01:
+ - Muestras analizadas: 6
+ - Rutas dinámicas únicas: 61.00
+ - Rutas dinámicas totales: 91.00
+ - Asignaciones totales: 240.00
+ - Relación (Asignación/Ruta): 3.93
+ - Pasajeros beneficiados: 5134.00
+
+Modelo BDI_02:
+ - Muestras analizadas: 6
+ - Rutas dinámicas únicas: 2.00
+ - Rutas dinámicas totales: 4.00
+ - Asignaciones totales: 4.00
+ - Relación (Asignación/Ruta): 2.00
+ - Pasajeros beneficiados: 62.00
+
+Modelo BDI_03:
+ - Muestras analizadas: 6
+ - Rutas dinámicas únicas: 4.00
+ - Rutas dinámicas totales: 8.00
+ - Asignaciones totales: 12.00
+ - Relación (Asignación/Ruta): 3.00
+ - Pasajeros beneficiados: 187.00
+
+Modelo BDI_01_IC:
+ - Muestras analizadas: 6
+ - Rutas dinámicas únicas: 73.00
+ - Rutas dinámicas totales: 116.00
+ - Asignaciones totales: 298.00
+ - Relación (Asignación/Ruta): 4.08
+ - Pasajeros beneficiados: 6644.00
+
+Modelo BDI_01_DY:
+ - Muestras analizadas: 6
+ - Rutas dinámicas únicas: 63.00
+ - Rutas dinámicas totales: 100.00
+ - Asignaciones totales: 216.00
+ - Relación (Asignación/Ruta): 3.43
+ - Pasajeros beneficiados: 4997.00
 
 ======================================================================
                            DETALLE POR RUTA                           
 ======================================================================
 
-Ruta: bus_stop 152 → bus_stop 97
- - Frecuencia: 19 apariciones en reportes
- - Pasajeros totales: 751
- - Promedio de pasajeros por viaje: 39.53
-
-   No se registraron horas de asignación
---------------------------------------------------
 Ruta: bus_stop 136 → bus_stop 128
- - Frecuencia: 17 apariciones en reportes
+ - Frecuencia: 132 apariciones
  - Pasajeros totales: 5030
- - Promedio de pasajeros por viaje: 295.88
-
-   No se registraron horas de asignación
+ - Promedio pasajeros/viaje: 38.11
 --------------------------------------------------
+
 Ruta: bus_stop 136 → bus_stop 1
- - Frecuencia: 14 apariciones en reportes
+ - Frecuencia: 112 apariciones
  - Pasajeros totales: 4596
- - Promedio de pasajeros por viaje: 328.29
-
-   No se registraron horas de asignación
+ - Promedio pasajeros/viaje: 41.04
 --------------------------------------------------
-Ruta: bus_stop 140 → bus_stop 89
- - Frecuencia: 10 apariciones en reportes
- - Pasajeros totales: 1067
- - Promedio de pasajeros por viaje: 106.70
 
-   No se registraron horas de asignación
+Ruta: bus_stop 152 → bus_stop 97
+ - Frecuencia: 53 apariciones
+ - Pasajeros totales: 751
+ - Promedio pasajeros/viaje: 14.17
 --------------------------------------------------
-Ruta: bus_stop 140 → bus_stop 175
- - Frecuencia: 9 apariciones en reportes
- - Pasajeros totales: 493
- - Promedio de pasajeros por viaje: 54.78
 
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 41
- - Frecuencia: 8 apariciones en reportes
- - Pasajeros totales: 62
- - Promedio de pasajeros por viaje: 7.75
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 59
- - Frecuencia: 7 apariciones en reportes
- - Pasajeros totales: 81
- - Promedio de pasajeros por viaje: 11.57
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 152 → bus_stop 1
- - Frecuencia: 6 apariciones en reportes
- - Pasajeros totales: 514
- - Promedio de pasajeros por viaje: 85.67
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 152 → bus_stop 128
- - Frecuencia: 6 apariciones en reportes
- - Pasajeros totales: 387
- - Promedio de pasajeros por viaje: 64.50
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 177
- - Frecuencia: 5 apariciones en reportes
- - Pasajeros totales: 44
- - Promedio de pasajeros por viaje: 8.80
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 32
- - Frecuencia: 5 apariciones en reportes
- - Pasajeros totales: 32
- - Promedio de pasajeros por viaje: 6.40
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 33
- - Frecuencia: 5 apariciones en reportes
- - Pasajeros totales: 66
- - Promedio de pasajeros por viaje: 13.20
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 86
- - Frecuencia: 5 apariciones en reportes
- - Pasajeros totales: 50
- - Promedio de pasajeros por viaje: 10.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 105
- - Frecuencia: 5 apariciones en reportes
- - Pasajeros totales: 35
- - Promedio de pasajeros por viaje: 7.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 43
- - Frecuencia: 5 apariciones en reportes
- - Pasajeros totales: 36
- - Promedio de pasajeros por viaje: 7.20
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 130
- - Frecuencia: 5 apariciones en reportes
- - Pasajeros totales: 36
- - Promedio de pasajeros por viaje: 7.20
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 94 → bus_stop 63
- - Frecuencia: 4 apariciones en reportes
- - Pasajeros totales: 50
- - Promedio de pasajeros por viaje: 12.50
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 116 → bus_stop 47
- - Frecuencia: 4 apariciones en reportes
- - Pasajeros totales: 28
- - Promedio de pasajeros por viaje: 7.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 90
- - Frecuencia: 4 apariciones en reportes
- - Pasajeros totales: 31
- - Promedio de pasajeros por viaje: 7.75
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 179
- - Frecuencia: 4 apariciones en reportes
- - Pasajeros totales: 45
- - Promedio de pasajeros por viaje: 11.25
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 94 → bus_stop 82
- - Frecuencia: 4 apariciones en reportes
- - Pasajeros totales: 36
- - Promedio de pasajeros por viaje: 9.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 151
- - Frecuencia: 4 apariciones en reportes
- - Pasajeros totales: 24
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 40
- - Frecuencia: 3 apariciones en reportes
- - Pasajeros totales: 26
- - Promedio de pasajeros por viaje: 8.67
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 168
- - Frecuencia: 3 apariciones en reportes
- - Pasajeros totales: 19
- - Promedio de pasajeros por viaje: 6.33
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 116 → bus_stop 136
- - Frecuencia: 3 apariciones en reportes
- - Pasajeros totales: 20
- - Promedio de pasajeros por viaje: 6.67
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 88
- - Frecuencia: 3 apariciones en reportes
- - Pasajeros totales: 47
- - Promedio de pasajeros por viaje: 15.67
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 84
- - Frecuencia: 3 apariciones en reportes
- - Pasajeros totales: 28
- - Promedio de pasajeros por viaje: 9.33
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 144
- - Frecuencia: 3 apariciones en reportes
- - Pasajeros totales: 27
- - Promedio de pasajeros por viaje: 9.00
-
-   No se registraron horas de asignación
---------------------------------------------------
 Ruta: bus_stop 88 → bus_stop 1
- - Frecuencia: 3 apariciones en reportes
+ - Frecuencia: 50 apariciones
  - Pasajeros totales: 1903
- - Promedio de pasajeros por viaje: 634.33
-
-   No se registraron horas de asignación
+ - Promedio pasajeros/viaje: 38.06
 --------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 21
- - Frecuencia: 3 apariciones en reportes
- - Pasajeros totales: 36
- - Promedio de pasajeros por viaje: 12.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 140 → bus_stop 175
+ - Frecuencia: 35 apariciones
+ - Pasajeros totales: 493
+ - Promedio pasajeros/viaje: 14.09
 --------------------------------------------------
-Ruta: bus_stop 94 → bus_stop 127
- - Frecuencia: 3 apariciones en reportes
- - Pasajeros totales: 18
- - Promedio de pasajeros por viaje: 6.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 140 → bus_stop 89
+ - Frecuencia: 35 apariciones
+ - Pasajeros totales: 1067
+ - Promedio pasajeros/viaje: 30.49
 --------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 93
- - Frecuencia: 3 apariciones en reportes
- - Pasajeros totales: 25
- - Promedio de pasajeros por viaje: 8.33
 
-   No se registraron horas de asignación
+Ruta: bus_stop 152 → bus_stop 128
+ - Frecuencia: 14 apariciones
+ - Pasajeros totales: 387
+ - Promedio pasajeros/viaje: 27.64
 --------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 143
- - Frecuencia: 3 apariciones en reportes
- - Pasajeros totales: 20
- - Promedio de pasajeros por viaje: 6.67
 
-   No se registraron horas de asignación
+Ruta: bus_stop 152 → bus_stop 1
+ - Frecuencia: 14 apariciones
+ - Pasajeros totales: 514
+ - Promedio pasajeros/viaje: 36.71
 --------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 136
- - Frecuencia: 3 apariciones en reportes
- - Pasajeros totales: 25
- - Promedio de pasajeros por viaje: 8.33
 
-   No se registraron horas de asignación
+Ruta: bus_stop 47 → bus_stop 59
+ - Frecuencia: 11 apariciones
+ - Pasajeros totales: 81
+ - Promedio pasajeros/viaje: 7.36
 --------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 158
- - Frecuencia: 3 apariciones en reportes
- - Pasajeros totales: 26
- - Promedio de pasajeros por viaje: 8.67
 
-   No se registraron horas de asignación
+Ruta: bus_stop 47 → bus_stop 33
+ - Frecuencia: 9 apariciones
+ - Pasajeros totales: 66
+ - Promedio pasajeros/viaje: 7.33
 --------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 22
- - Frecuencia: 3 apariciones en reportes
- - Pasajeros totales: 18
- - Promedio de pasajeros por viaje: 6.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 47 → bus_stop 41
+ - Frecuencia: 9 apariciones
+ - Pasajeros totales: 62
+ - Promedio pasajeros/viaje: 6.89
 --------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 42
- - Frecuencia: 3 apariciones en reportes
- - Pasajeros totales: 21
- - Promedio de pasajeros por viaje: 7.00
 
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 65
- - Frecuencia: 3 apariciones en reportes
- - Pasajeros totales: 20
- - Promedio de pasajeros por viaje: 6.67
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 156
- - Frecuencia: 3 apariciones en reportes
- - Pasajeros totales: 19
- - Promedio de pasajeros por viaje: 6.33
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 138
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 15
- - Promedio de pasajeros por viaje: 7.50
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 94 → bus_stop 30
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 14
- - Promedio de pasajeros por viaje: 7.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 102
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 29
- - Promedio de pasajeros por viaje: 14.50
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 116 → bus_stop 45
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 13
- - Promedio de pasajeros por viaje: 6.50
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 51
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 12
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 159
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 12
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 140 → bus_stop 152
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 30
- - Promedio de pasajeros por viaje: 15.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 150
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 18
- - Promedio de pasajeros por viaje: 9.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 116 → bus_stop 143
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 12
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 140 → bus_stop 142
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 14
- - Promedio de pasajeros por viaje: 7.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 146
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 20
- - Promedio de pasajeros por viaje: 10.00
-
-   No se registraron horas de asignación
---------------------------------------------------
 Ruta: bus_stop 140 → bus_stop 145
- - Frecuencia: 2 apariciones en reportes
+ - Frecuencia: 8 apariciones
  - Pasajeros totales: 60
- - Promedio de pasajeros por viaje: 30.00
-
-   No se registraron horas de asignación
+ - Promedio pasajeros/viaje: 7.50
 --------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 181
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 24
- - Promedio de pasajeros por viaje: 12.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 47 → bus_stop 179
+ - Frecuencia: 7 apariciones
+ - Pasajeros totales: 45
+ - Promedio pasajeros/viaje: 6.43
 --------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 155
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 12
- - Promedio de pasajeros por viaje: 6.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 47 → bus_stop 177
+ - Frecuencia: 7 apariciones
+ - Pasajeros totales: 44
+ - Promedio pasajeros/viaje: 6.29
 --------------------------------------------------
-Ruta: bus_stop 94 → bus_stop 129
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 12
- - Promedio de pasajeros por viaje: 6.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 47 → bus_stop 86
+ - Frecuencia: 7 apariciones
+ - Pasajeros totales: 50
+ - Promedio pasajeros/viaje: 7.14
 --------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 68
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 18
- - Promedio de pasajeros por viaje: 9.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 47 → bus_stop 88
+ - Frecuencia: 7 apariciones
+ - Pasajeros totales: 47
+ - Promedio pasajeros/viaje: 6.71
 --------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 171
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 13
- - Promedio de pasajeros por viaje: 6.50
 
-   No se registraron horas de asignación
+Ruta: bus_stop 94 → bus_stop 63
+ - Frecuencia: 7 apariciones
+ - Pasajeros totales: 50
+ - Promedio pasajeros/viaje: 7.14
 --------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 169
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 16
- - Promedio de pasajeros por viaje: 8.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 82 → bus_stop 130
+ - Frecuencia: 6 apariciones
+ - Pasajeros totales: 36
+ - Promedio pasajeros/viaje: 6.00
 --------------------------------------------------
-Ruta: bus_stop 116 → bus_stop 2
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 12
- - Promedio de pasajeros por viaje: 6.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 47 → bus_stop 43
+ - Frecuencia: 6 apariciones
+ - Pasajeros totales: 36
+ - Promedio pasajeros/viaje: 6.00
 --------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 157
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 13
- - Promedio de pasajeros por viaje: 6.50
 
-   No se registraron horas de asignación
+Ruta: bus_stop 47 → bus_stop 21
+ - Frecuencia: 6 apariciones
+ - Pasajeros totales: 36
+ - Promedio pasajeros/viaje: 6.00
 --------------------------------------------------
-Ruta: bus_stop 116 → bus_stop 34
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 15
- - Promedio de pasajeros por viaje: 7.50
 
-   No se registraron horas de asignación
+Ruta: bus_stop 82 → bus_stop 105
+ - Frecuencia: 5 apariciones
+ - Pasajeros totales: 35
+ - Promedio pasajeros/viaje: 7.00
 --------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 31
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 24
- - Promedio de pasajeros por viaje: 12.00
 
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 19
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 12
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 94 → bus_stop 31
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 18
- - Promedio de pasajeros por viaje: 9.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 56
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 21
- - Promedio de pasajeros por viaje: 10.50
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 55
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 13
- - Promedio de pasajeros por viaje: 6.50
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 48
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 20
- - Promedio de pasajeros por viaje: 10.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 136 → bus_stop 7
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 12
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
---------------------------------------------------
 Ruta: bus_stop 47 → bus_stop 129
- - Frecuencia: 2 apariciones en reportes
+ - Frecuencia: 5 apariciones
  - Pasajeros totales: 37
- - Promedio de pasajeros por viaje: 18.50
-
-   No se registraron horas de asignación
+ - Promedio pasajeros/viaje: 7.40
 --------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 140
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 12
- - Promedio de pasajeros por viaje: 6.00
 
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 13
- - Frecuencia: 2 apariciones en reportes
- - Pasajeros totales: 19
- - Promedio de pasajeros por viaje: 9.50
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 36
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 13
- - Promedio de pasajeros por viaje: 13.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 137
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 140 → bus_stop 163
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 7
- - Promedio de pasajeros por viaje: 7.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 116 → bus_stop 87
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 116 → bus_stop 22
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 152 → bus_stop 136
- - Frecuencia: 1 apariciones en reportes
+Ruta: bus_stop 47 → bus_stop 32
+ - Frecuencia: 5 apariciones
  - Pasajeros totales: 32
- - Promedio de pasajeros por viaje: 32.00
-
-   No se registraron horas de asignación
+ - Promedio pasajeros/viaje: 6.40
 --------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 123
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 7
- - Promedio de pasajeros por viaje: 7.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 47 → bus_stop 90
+ - Frecuencia: 5 apariciones
+ - Pasajeros totales: 31
+ - Promedio pasajeros/viaje: 6.20
 --------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 166
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 94 → bus_stop 82
+ - Frecuencia: 5 apariciones
+ - Pasajeros totales: 36
+ - Promedio pasajeros/viaje: 7.20
 --------------------------------------------------
-Ruta: bus_stop 116 → bus_stop 137
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 8
- - Promedio de pasajeros por viaje: 8.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 152 → bus_stop 136
+ - Frecuencia: 5 apariciones
+ - Pasajeros totales: 32
+ - Promedio pasajeros/viaje: 6.40
 --------------------------------------------------
-Ruta: bus_stop 94 → bus_stop 19
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 7
- - Promedio de pasajeros por viaje: 7.00
 
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 122
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 30
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 28
- - Promedio de pasajeros por viaje: 28.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 152 → bus_stop 156
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 94 → bus_stop 78
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 24
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 116 → bus_stop 36
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 8
- - Promedio de pasajeros por viaje: 8.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 30 → bus_stop 76
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 26
- - Promedio de pasajeros por viaje: 26.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 30 → bus_stop 63
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 27
- - Promedio de pasajeros por viaje: 27.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 30 → bus_stop 31
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 30
- - Promedio de pasajeros por viaje: 30.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 18 → bus_stop 78
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 15
- - Promedio de pasajeros por viaje: 15.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 143 → bus_stop 154
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 18
- - Promedio de pasajeros por viaje: 18.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 143 → bus_stop 142
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 12
- - Promedio de pasajeros por viaje: 12.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 116 → bus_stop 88
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 7
- - Promedio de pasajeros por viaje: 7.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 1 → bus_stop 4
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 7
- - Promedio de pasajeros por viaje: 7.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 18
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 17
- - Promedio de pasajeros por viaje: 17.00
-
-   No se registraron horas de asignación
---------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 87
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
---------------------------------------------------
 Ruta: bus_stop 1 → bus_stop 89
- - Frecuencia: 1 apariciones en reportes
+ - Frecuencia: 5 apariciones
  - Pasajeros totales: 76
- - Promedio de pasajeros por viaje: 76.00
-
-   No se registraron horas de asignación
+ - Promedio pasajeros/viaje: 15.20
 --------------------------------------------------
+
 Ruta: bus_stop 1 → bus_stop 175
- - Frecuencia: 1 apariciones en reportes
+ - Frecuencia: 5 apariciones
  - Pasajeros totales: 58
- - Promedio de pasajeros por viaje: 58.00
-
-   No se registraron horas de asignación
+ - Promedio pasajeros/viaje: 11.60
 --------------------------------------------------
-Ruta: bus_stop 123 → bus_stop 124
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 22
- - Promedio de pasajeros por viaje: 22.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 82 → bus_stop 136
+ - Frecuencia: 4 apariciones
+ - Pasajeros totales: 25
+ - Promedio pasajeros/viaje: 6.25
 --------------------------------------------------
-Ruta: bus_stop 94 → bus_stop 18
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 47 → bus_stop 31
+ - Frecuencia: 4 apariciones
+ - Pasajeros totales: 24
+ - Promedio pasajeros/viaje: 6.00
 --------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 47
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 8
- - Promedio de pasajeros por viaje: 8.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 47 → bus_stop 158
+ - Frecuencia: 4 apariciones
+ - Pasajeros totales: 26
+ - Promedio pasajeros/viaje: 6.50
 --------------------------------------------------
-Ruta: bus_stop 116 → bus_stop 130
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 116 → bus_stop 47
+ - Frecuencia: 4 apariciones
+ - Pasajeros totales: 28
+ - Promedio pasajeros/viaje: 7.00
 --------------------------------------------------
-Ruta: bus_stop 116 → bus_stop 166
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 7
- - Promedio de pasajeros por viaje: 7.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 82 → bus_stop 40
+ - Frecuencia: 4 apariciones
+ - Pasajeros totales: 26
+ - Promedio pasajeros/viaje: 6.50
 --------------------------------------------------
-Ruta: bus_stop 116 → bus_stop 50
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 140 → bus_stop 152
+ - Frecuencia: 4 apariciones
+ - Pasajeros totales: 30
+ - Promedio pasajeros/viaje: 7.50
 --------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 78
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 47 → bus_stop 102
+ - Frecuencia: 4 apariciones
+ - Pasajeros totales: 29
+ - Promedio pasajeros/viaje: 7.25
 --------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 49
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 8
- - Promedio de pasajeros por viaje: 8.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 47 → bus_stop 84
+ - Frecuencia: 4 apariciones
+ - Pasajeros totales: 28
+ - Promedio pasajeros/viaje: 7.00
 --------------------------------------------------
-Ruta: bus_stop 51 → bus_stop 123
- - Frecuencia: 1 apariciones en reportes
+
+Ruta: bus_stop 47 → bus_stop 144
+ - Frecuencia: 4 apariciones
+ - Pasajeros totales: 27
+ - Promedio pasajeros/viaje: 6.75
+--------------------------------------------------
+
+Ruta: bus_stop 47 → bus_stop 30
+ - Frecuencia: 4 apariciones
+ - Pasajeros totales: 28
+ - Promedio pasajeros/viaje: 7.00
+--------------------------------------------------
+
+Ruta: bus_stop 47 → bus_stop 93
+ - Frecuencia: 4 apariciones
+ - Pasajeros totales: 25
+ - Promedio pasajeros/viaje: 6.25
+--------------------------------------------------
+
+Ruta: bus_stop 47 → bus_stop 151
+ - Frecuencia: 4 apariciones
+ - Pasajeros totales: 24
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 30 → bus_stop 31
+ - Frecuencia: 4 apariciones
+ - Pasajeros totales: 30
+ - Promedio pasajeros/viaje: 7.50
+--------------------------------------------------
+
+Ruta: bus_stop 94 → bus_stop 127
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 18
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 56
+ - Frecuencia: 3 apariciones
  - Pasajeros totales: 21
- - Promedio de pasajeros por viaje: 21.00
-
-   No se registraron horas de asignación
+ - Promedio pasajeros/viaje: 7.00
 --------------------------------------------------
-Ruta: bus_stop 51 → bus_stop 122
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 8
- - Promedio de pasajeros por viaje: 8.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 82 → bus_stop 22
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 18
+ - Promedio pasajeros/viaje: 6.00
 --------------------------------------------------
-Ruta: bus_stop 122 → bus_stop 124
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 14
- - Promedio de pasajeros por viaje: 14.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 82 → bus_stop 156
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 19
+ - Promedio pasajeros/viaje: 6.33
 --------------------------------------------------
-Ruta: bus_stop 136 → bus_stop 133
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 14
- - Promedio de pasajeros por viaje: 14.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 47 → bus_stop 146
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 20
+ - Promedio pasajeros/viaje: 6.67
 --------------------------------------------------
-Ruta: bus_stop 152 → bus_stop 175
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 8
- - Promedio de pasajeros por viaje: 8.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 82 → bus_stop 48
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 20
+ - Promedio pasajeros/viaje: 6.67
 --------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 180
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 8
- - Promedio de pasajeros por viaje: 8.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 116 → bus_stop 136
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 20
+ - Promedio pasajeros/viaje: 6.67
 --------------------------------------------------
-Ruta: bus_stop 82 → bus_stop 2
- - Frecuencia: 1 apariciones en reportes
+
+Ruta: bus_stop 94 → bus_stop 31
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 18
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 65
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 20
+ - Promedio pasajeros/viaje: 6.67
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 42
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 21
+ - Promedio pasajeros/viaje: 7.00
+--------------------------------------------------
+
+Ruta: bus_stop 47 → bus_stop 168
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 19
+ - Promedio pasajeros/viaje: 6.33
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 13
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 19
+ - Promedio pasajeros/viaje: 6.33
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 68
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 18
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 47 → bus_stop 150
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 18
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 143
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 20
+ - Promedio pasajeros/viaje: 6.67
+--------------------------------------------------
+
+Ruta: bus_stop 30 → bus_stop 76
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 26
+ - Promedio pasajeros/viaje: 8.67
+--------------------------------------------------
+
+Ruta: bus_stop 30 → bus_stop 63
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 27
+ - Promedio pasajeros/viaje: 9.00
+--------------------------------------------------
+
+Ruta: bus_stop 47 → bus_stop 181
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 24
+ - Promedio pasajeros/viaje: 8.00
+--------------------------------------------------
+
+Ruta: bus_stop 143 → bus_stop 154
+ - Frecuencia: 3 apariciones
+ - Pasajeros totales: 18
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 171
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 13
+ - Promedio pasajeros/viaje: 6.50
+--------------------------------------------------
+
+Ruta: bus_stop 116 → bus_stop 2
+ - Frecuencia: 2 apariciones
  - Pasajeros totales: 12
- - Promedio de pasajeros por viaje: 12.00
-
-   No se registraron horas de asignación
+ - Promedio pasajeros/viaje: 6.00
 --------------------------------------------------
-Ruta: bus_stop 116 → bus_stop 171
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 140 → bus_stop 142
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 14
+ - Promedio pasajeros/viaje: 7.00
 --------------------------------------------------
+
+Ruta: bus_stop 136 → bus_stop 7
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 12
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 47 → bus_stop 169
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 16
+ - Promedio pasajeros/viaje: 8.00
+--------------------------------------------------
+
+Ruta: bus_stop 94 → bus_stop 30
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 14
+ - Promedio pasajeros/viaje: 7.00
+--------------------------------------------------
+
+Ruta: bus_stop 116 → bus_stop 45
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 13
+ - Promedio pasajeros/viaje: 6.50
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 36
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 13
+ - Promedio pasajeros/viaje: 6.50
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 138
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 15
+ - Promedio pasajeros/viaje: 7.50
+--------------------------------------------------
+
+Ruta: bus_stop 94 → bus_stop 129
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 12
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 47 → bus_stop 18
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 17
+ - Promedio pasajeros/viaje: 8.50
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 55
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 13
+ - Promedio pasajeros/viaje: 6.50
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 155
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 12
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 116 → bus_stop 143
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 12
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 18 → bus_stop 78
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 15
+ - Promedio pasajeros/viaje: 7.50
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 51
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 12
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 143 → bus_stop 142
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 12
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 136 → bus_stop 133
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 14
+ - Promedio pasajeros/viaje: 7.00
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 159
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 12
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 140
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 12
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 2
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 12
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 157
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 13
+ - Promedio pasajeros/viaje: 6.50
+--------------------------------------------------
+
+Ruta: bus_stop 47 → bus_stop 19
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 12
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 51 → bus_stop 123
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 21
+ - Promedio pasajeros/viaje: 10.50
+--------------------------------------------------
+
+Ruta: bus_stop 116 → bus_stop 34
+ - Frecuencia: 2 apariciones
+ - Pasajeros totales: 15
+ - Promedio pasajeros/viaje: 7.50
+--------------------------------------------------
+
 Ruta: bus_stop 47 → bus_stop 82
- - Frecuencia: 1 apariciones en reportes
+ - Frecuencia: 1 apariciones
  - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
+ - Promedio pasajeros/viaje: 6.00
 --------------------------------------------------
+
 Ruta: bus_stop 82 → bus_stop 124
- - Frecuencia: 1 apariciones en reportes
+ - Frecuencia: 1 apariciones
  - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
+ - Promedio pasajeros/viaje: 6.00
 --------------------------------------------------
+
 Ruta: bus_stop 82 → bus_stop 58
- - Frecuencia: 1 apariciones en reportes
+ - Frecuencia: 1 apariciones
  - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
+ - Promedio pasajeros/viaje: 6.00
 --------------------------------------------------
-Ruta: bus_stop 94 → bus_stop 76
- - Frecuencia: 1 apariciones en reportes
+
+Ruta: bus_stop 82 → bus_stop 49
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 8
+ - Promedio pasajeros/viaje: 8.00
+--------------------------------------------------
+
+Ruta: bus_stop 116 → bus_stop 50
+ - Frecuencia: 1 apariciones
  - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
+ - Promedio pasajeros/viaje: 6.00
 --------------------------------------------------
-Ruta: bus_stop 47 → bus_stop 170
- - Frecuencia: 1 apariciones en reportes
+
+Ruta: bus_stop 140 → bus_stop 163
+ - Frecuencia: 1 apariciones
  - Pasajeros totales: 7
- - Promedio de pasajeros por viaje: 7.00
-
-   No se registraron horas de asignación
+ - Promedio pasajeros/viaje: 7.00
 --------------------------------------------------
+
+Ruta: bus_stop 116 → bus_stop 87
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 6
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 116 → bus_stop 22
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 6
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 152 → bus_stop 156
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 6
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 94 → bus_stop 78
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 6
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 24
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 6
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 116 → bus_stop 36
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 8
+ - Promedio pasajeros/viaje: 8.00
+--------------------------------------------------
+
+Ruta: bus_stop 94 → bus_stop 19
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 7
+ - Promedio pasajeros/viaje: 7.00
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 122
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 6
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 137
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 6
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 87
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 6
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 94 → bus_stop 76
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 6
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 47 → bus_stop 170
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 7
+ - Promedio pasajeros/viaje: 7.00
+--------------------------------------------------
+
 Ruta: bus_stop 82 → bus_stop 164
- - Frecuencia: 1 apariciones en reportes
+ - Frecuencia: 1 apariciones
  - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
-
-   No se registraron horas de asignación
+ - Promedio pasajeros/viaje: 6.00
 --------------------------------------------------
-Ruta: bus_stop 116 → bus_stop 24
- - Frecuencia: 1 apariciones en reportes
- - Pasajeros totales: 6
- - Promedio de pasajeros por viaje: 6.00
 
-   No se registraron horas de asignación
+Ruta: bus_stop 116 → bus_stop 24
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 6
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 116 → bus_stop 88
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 7
+ - Promedio pasajeros/viaje: 7.00
+--------------------------------------------------
+
+Ruta: bus_stop 1 → bus_stop 4
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 7
+ - Promedio pasajeros/viaje: 7.00
+--------------------------------------------------
+
+Ruta: bus_stop 152 → bus_stop 175
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 8
+ - Promedio pasajeros/viaje: 8.00
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 180
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 8
+ - Promedio pasajeros/viaje: 8.00
+--------------------------------------------------
+
+Ruta: bus_stop 116 → bus_stop 171
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 6
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 123
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 7
+ - Promedio pasajeros/viaje: 7.00
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 166
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 6
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 116 → bus_stop 137
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 8
+ - Promedio pasajeros/viaje: 8.00
+--------------------------------------------------
+
+Ruta: bus_stop 123 → bus_stop 124
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 22
+ - Promedio pasajeros/viaje: 22.00
+--------------------------------------------------
+
+Ruta: bus_stop 94 → bus_stop 18
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 6
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 82 → bus_stop 47
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 8
+ - Promedio pasajeros/viaje: 8.00
+--------------------------------------------------
+
+Ruta: bus_stop 116 → bus_stop 130
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 6
+ - Promedio pasajeros/viaje: 6.00
+--------------------------------------------------
+
+Ruta: bus_stop 116 → bus_stop 166
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 7
+ - Promedio pasajeros/viaje: 7.00
+--------------------------------------------------
+
+Ruta: bus_stop 51 → bus_stop 122
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 8
+ - Promedio pasajeros/viaje: 8.00
+--------------------------------------------------
+
+Ruta: bus_stop 122 → bus_stop 124
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 14
+ - Promedio pasajeros/viaje: 14.00
+--------------------------------------------------
+
+Ruta: bus_stop 47 → bus_stop 78
+ - Frecuencia: 1 apariciones
+ - Pasajeros totales: 6
+ - Promedio pasajeros/viaje: 6.00
 --------------------------------------------------
 
 ======================================================================
                         ESTADÍSTICAS GENERALES                        
 ======================================================================
 
-Total de viajes registrados: 319
-Total de pasajeros transportados: 17024
-Promedio de pasajeros por viaje: 53.37
-
-Top 3 rutas más frecuentes:
-1. bus_stop 152 → bus_stop 97 - 19 viajes
-2. bus_stop 136 → bus_stop 128 - 17 viajes
-3. bus_stop 136 → bus_stop 1 - 14 viajes
-
-Top 3 rutas con más pasajeros:
-1. bus_stop 136 → bus_stop 128 - 5030 pasajeros
-2. bus_stop 136 → bus_stop 1 - 4596 pasajeros
-3. bus_stop 88 → bus_stop 1 - 1903 pasajeros
-
-======================================================================
-                          ANÁLISIS DE HORAS                           
-======================================================================
-
-No se registraron horas de asignación en los reportes
+Total asignaciones: 770
+Total de pasajeros beneficiados: 17024
+Promedio de pasajeros por viaje: 22.11
