@@ -1,0 +1,209 @@
+REPORTE DETALLADO DE PARADAS DINÁMICAS - 5_BDI_01_DYNA_bus_dynamic_stops
+======================================================================
+
+PARADA DESTINO: bus_stop 1 (PARADA INICIO: bus_stop 136)
+  Asignación 1:
+    - Hora: 838.0
+    - Pasajeros: 22
+    - Bus: 8 (Línea: DYNA)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 2:
+    - Hora: 968.0
+    - Pasajeros: 29
+    - Bus: 10 (Línea: 652A)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 3:
+    - Hora: 3381.0
+    - Pasajeros: 47
+    - Bus: 30 (Línea: 652A)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 4:
+    - Hora: 3544.0
+    - Pasajeros: 64
+    - Bus: 28 (Línea: DYNA)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 5:
+    - Hora: 3696.0
+    - Pasajeros: 77
+    - Bus: 40 (Línea: 652A)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 6:
+    - Hora: 5102.0
+    - Pasajeros: 29
+    - Bus: 40 (Línea: 652A)
+    - Tiempo respuesta: 5.0 min
+
+PARADA DESTINO: bus_stop 128 (PARADA INICIO: bus_stop 136)
+  Asignación 1:
+    - Hora: 838.0
+    - Pasajeros: 15
+    - Bus: 5 (Línea: L2)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 2:
+    - Hora: 968.0
+    - Pasajeros: 21
+    - Bus: 10 (Línea: 652A)
+    - Tiempo respuesta: 4.0 min
+
+  Asignación 3:
+    - Hora: 3381.0
+    - Pasajeros: 42
+    - Bus: 21 (Línea: 652B)
+    - Tiempo respuesta: 4.0 min
+
+  Asignación 4:
+    - Hora: 3544.0
+    - Pasajeros: 53
+    - Bus: 30 (Línea: 652A)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 5:
+    - Hora: 3696.0
+    - Pasajeros: 60
+    - Bus: 40 (Línea: 652A)
+    - Tiempo respuesta: 4.0 min
+
+  Asignación 6:
+    - Hora: 5102.0
+    - Pasajeros: 17
+    - Bus: 40 (Línea: 652A)
+    - Tiempo respuesta: 6.0 min
+
+PARADA DESTINO: bus_stop 97 (PARADA INICIO: bus_stop 152)
+  Asignación 1:
+    - Hora: 968.0
+    - Pasajeros: 7
+    - Bus: 10 (Línea: 652A)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 2:
+    - Hora: 3381.0
+    - Pasajeros: 19
+    - Bus: 21 (Línea: 652B)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 3:
+    - Hora: 3696.0
+    - Pasajeros: 21
+    - Bus: 31 (Línea: 652B)
+    - Tiempo respuesta: 3.0 min
+
+PARADA DESTINO: bus_stop 30 (PARADA INICIO: bus_stop 94)
+  Asignación 1:
+    - Hora: 2039.0
+    - Pasajeros: 8
+    - Bus: 12 (Línea: L1)
+    - Tiempo respuesta: 2.0 min
+
+PARADA DESTINO: bus_stop 102 (PARADA INICIO: bus_stop 47)
+  Asignación 1:
+    - Hora: 3359.0
+    - Pasajeros: 6
+    - Bus: 32 (Línea: L1)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 2:
+    - Hora: 5098.0
+    - Pasajeros: 6
+    - Bus: 43 (Línea: L2)
+    - Tiempo respuesta: 2.0 min
+
+PARADA DESTINO: bus_stop 59 (PARADA INICIO: bus_stop 47)
+  Asignación 1:
+    - Hora: 3359.0
+    - Pasajeros: 8
+    - Bus: 23 (Línea: L2)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 2:
+    - Hora: 5098.0
+    - Pasajeros: 8
+    - Bus: 43 (Línea: L2)
+    - Tiempo respuesta: 4.0 min
+
+PARADA DESTINO: bus_stop 31 (PARADA INICIO: bus_stop 47)
+  Asignación 1:
+    - Hora: 3359.0
+    - Pasajeros: 6
+    - Bus: 32 (Línea: L1)
+    - Tiempo respuesta: 4.0 min
+
+  Asignación 2:
+    - Hora: 5098.0
+    - Pasajeros: 6
+    - Bus: 42 (Línea: L1)
+    - Tiempo respuesta: 6.0 min
+
+PARADA DESTINO: bus_stop 181 (PARADA INICIO: bus_stop 47)
+  Asignación 1:
+    - Hora: 3359.0
+    - Pasajeros: 8
+    - Bus: 23 (Línea: L2)
+    - Tiempo respuesta: 5.0 min
+
+  Asignación 2:
+    - Hora: 5098.0
+    - Pasajeros: 8
+    - Bus: 42 (Línea: L1)
+    - Tiempo respuesta: 8.0 min
+
+PARADA DESTINO: bus_stop 130 (PARADA INICIO: bus_stop 82)
+  Asignación 1:
+    - Hora: 3524.0
+    - Pasajeros: 6
+    - Bus: 12 (Línea: L1)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 2:
+    - Hora: 5947.0
+    - Pasajeros: 6
+    - Bus: 43 (Línea: L2)
+    - Tiempo respuesta: 2.0 min
+
+PARADA DESTINO: bus_stop 65 (PARADA INICIO: bus_stop 82)
+  Asignación 1:
+    - Hora: 3524.0
+    - Pasajeros: 7
+    - Bus: 33 (Línea: L2)
+    - Tiempo respuesta: 3.0 min
+
+PARADA DESTINO: bus_stop 43 (PARADA INICIO: bus_stop 47)
+  Asignación 1:
+    - Hora: 5098.0
+    - Pasajeros: 6
+    - Bus: 43 (Línea: L2)
+    - Tiempo respuesta: 3.0 min
+
+PARADA DESTINO: bus_stop 86 (PARADA INICIO: bus_stop 47)
+  Asignación 1:
+    - Hora: 5098.0
+    - Pasajeros: 6
+    - Bus: 43 (Línea: L2)
+    - Tiempo respuesta: 5.0 min
+
+PARADA DESTINO: bus_stop 19 (PARADA INICIO: bus_stop 47)
+  Asignación 1:
+    - Hora: 5098.0
+    - Pasajeros: 6
+    - Bus: 42 (Línea: L1)
+    - Tiempo respuesta: 7.0 min
+
+PARADA DESTINO: bus_stop 45 (PARADA INICIO: bus_stop 116)
+  Asignación 1:
+    - Hora: 5947.0
+    - Pasajeros: 6
+    - Bus: 43 (Línea: L2)
+    - Tiempo respuesta: 3.0 min
+
+RESUMEN ESTADÍSTICO
+- Paradas dinámicas creadas: 14
+- Asignaciones totales: 31
+- Bus más activo: 43 (Línea L2) con 6 asignaciones
+
+======================================================================

@@ -1,0 +1,368 @@
+REPORTE DETALLADO DE PARADAS DINÁMICAS - 2_BDI_01_bus_dynamic_stops
+======================================================================
+
+PARADA DESTINO: bus_stop 128 (PARADA INICIO: bus_stop 136)
+  Asignación 1:
+    - Hora: 840.0
+    - Pasajeros: 17
+    - Bus: 5 (Línea: L2)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 2:
+    - Hora: 975.0
+    - Pasajeros: 33
+    - Bus: 8 (Línea: 652A)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 3:
+    - Hora: 1201.0
+    - Pasajeros: 34
+    - Bus: 12 (Línea: 651A)
+    - Tiempo respuesta: 4.0 min
+
+  Asignación 4:
+    - Hora: 1904.0
+    - Pasajeros: 20
+    - Bus: 14 (Línea: 651A)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 5:
+    - Hora: 2161.0
+    - Pasajeros: 48
+    - Bus: 16 (Línea: 652A)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 6:
+    - Hora: 2628.0
+    - Pasajeros: 12
+    - Bus: 20 (Línea: 651A)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 7:
+    - Hora: 3425.0
+    - Pasajeros: 82
+    - Bus: 14 (Línea: 651A)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 8:
+    - Hora: 3544.0
+    - Pasajeros: 56
+    - Bus: 19 (Línea: L2)
+    - Tiempo respuesta: 2.0 min
+
+PARADA DESTINO: bus_stop 1 (PARADA INICIO: bus_stop 136)
+  Asignación 1:
+    - Hora: 840.0
+    - Pasajeros: 19
+    - Bus: 5 (Línea: L2)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 2:
+    - Hora: 975.0
+    - Pasajeros: 25
+    - Bus: 8 (Línea: 652A)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 3:
+    - Hora: 1201.0
+    - Pasajeros: 26
+    - Bus: 5 (Línea: L2)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 4:
+    - Hora: 1904.0
+    - Pasajeros: 14
+    - Bus: 16 (Línea: 652A)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 5:
+    - Hora: 2161.0
+    - Pasajeros: 39
+    - Bus: 16 (Línea: 652A)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 6:
+    - Hora: 2628.0
+    - Pasajeros: 14
+    - Bus: 20 (Línea: 651A)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 7:
+    - Hora: 3425.0
+    - Pasajeros: 61
+    - Bus: 14 (Línea: 651A)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 8:
+    - Hora: 3544.0
+    - Pasajeros: 56
+    - Bus: 19 (Línea: L2)
+    - Tiempo respuesta: 3.0 min
+
+PARADA DESTINO: bus_stop 97 (PARADA INICIO: bus_stop 152)
+  Asignación 1:
+    - Hora: 975.0
+    - Pasajeros: 7
+    - Bus: 8 (Línea: 652A)
+    - Tiempo respuesta: 4.0 min
+
+  Asignación 2:
+    - Hora: 1201.0
+    - Pasajeros: 7
+    - Bus: 9 (Línea: 652B)
+    - Tiempo respuesta: 5.0 min
+
+  Asignación 3:
+    - Hora: 2161.0
+    - Pasajeros: 12
+    - Bus: 5 (Línea: L2)
+    - Tiempo respuesta: 4.0 min
+
+  Asignación 4:
+    - Hora: 3425.0
+    - Pasajeros: 21
+    - Bus: 14 (Línea: 651A)
+    - Tiempo respuesta: 4.0 min
+
+PARADA DESTINO: bus_stop 31 (PARADA INICIO: bus_stop 94)
+  Asignación 1:
+    - Hora: 1201.0
+    - Pasajeros: 6
+    - Bus: 10 (Línea: L1)
+    - Tiempo respuesta: 2.0 min
+
+PARADA DESTINO: bus_stop 68 (PARADA INICIO: bus_stop 82)
+  Asignación 1:
+    - Hora: 1752.0
+    - Pasajeros: 6
+    - Bus: 4 (Línea: L1)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 2:
+    - Hora: 2597.0
+    - Pasajeros: 6
+    - Bus: 10 (Línea: L1)
+    - Tiempo respuesta: 4.0 min
+
+PARADA DESTINO: bus_stop 175 (PARADA INICIO: bus_stop 140)
+  Asignación 1:
+    - Hora: 1900.0
+    - Pasajeros: 13
+    - Bus: 17 (Línea: 652B)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 2:
+    - Hora: 2611.0
+    - Pasajeros: 17
+    - Bus: 17 (Línea: 652B)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 3:
+    - Hora: 2935.0
+    - Pasajeros: 11
+    - Bus: 23 (Línea: 652B)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 4:
+    - Hora: 2994.0
+    - Pasajeros: 17
+    - Bus: 23 (Línea: 652B)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 5:
+    - Hora: 3095.0
+    - Pasajeros: 17
+    - Bus: 14 (Línea: 651A)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 6:
+    - Hora: 3622.0
+    - Pasajeros: 21
+    - Bus: 23 (Línea: 652B)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 7:
+    - Hora: 3892.0
+    - Pasajeros: 23
+    - Bus: 31 (Línea: 652B)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 8:
+    - Hora: 4005.0
+    - Pasajeros: 23
+    - Bus: 31 (Línea: 652B)
+    - Tiempo respuesta: 2.0 min
+
+PARADA DESTINO: bus_stop 89 (PARADA INICIO: bus_stop 140)
+  Asignación 1:
+    - Hora: 1900.0
+    - Pasajeros: 23
+    - Bus: 17 (Línea: 652B)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 2:
+    - Hora: 2611.0
+    - Pasajeros: 39
+    - Bus: 14 (Línea: 651A)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 3:
+    - Hora: 2994.0
+    - Pasajeros: 56
+    - Bus: 14 (Línea: 651A)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 4:
+    - Hora: 3095.0
+    - Pasajeros: 61
+    - Bus: 14 (Línea: 651A)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 5:
+    - Hora: 3622.0
+    - Pasajeros: 64
+    - Bus: 29 (Línea: 651B)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 6:
+    - Hora: 3892.0
+    - Pasajeros: 79
+    - Bus: 30 (Línea: 652A)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 7:
+    - Hora: 4005.0
+    - Pasajeros: 82
+    - Bus: 28 (Línea: 651A)
+    - Tiempo respuesta: 3.0 min
+
+PARADA DESTINO: bus_stop 40 (PARADA INICIO: bus_stop 82)
+  Asignación 1:
+    - Hora: 2597.0
+    - Pasajeros: 6
+    - Bus: 10 (Línea: L1)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 2:
+    - Hora: 5451.0
+    - Pasajeros: 7
+    - Bus: 33 (Línea: L2)
+    - Tiempo respuesta: 2.0 min
+
+PARADA DESTINO: bus_stop 56 (PARADA INICIO: bus_stop 82)
+  Asignación 1:
+    - Hora: 2597.0
+    - Pasajeros: 6
+    - Bus: 10 (Línea: L1)
+    - Tiempo respuesta: 3.0 min
+
+PARADA DESTINO: bus_stop 145 (PARADA INICIO: bus_stop 140)
+  Asignación 1:
+    - Hora: 2611.0
+    - Pasajeros: 6
+    - Bus: 21 (Línea: 651B)
+    - Tiempo respuesta: 4.0 min
+
+  Asignación 2:
+    - Hora: 2994.0
+    - Pasajeros: 6
+    - Bus: 23 (Línea: 652B)
+    - Tiempo respuesta: 4.0 min
+
+  Asignación 3:
+    - Hora: 3095.0
+    - Pasajeros: 6
+    - Bus: 27 (Línea: 651B)
+    - Tiempo respuesta: 4.0 min
+
+  Asignación 4:
+    - Hora: 3622.0
+    - Pasajeros: 7
+    - Bus: 29 (Línea: 651B)
+    - Tiempo respuesta: 4.0 min
+
+  Asignación 5:
+    - Hora: 3892.0
+    - Pasajeros: 8
+    - Bus: 32 (Línea: L1)
+    - Tiempo respuesta: 4.0 min
+
+  Asignación 6:
+    - Hora: 4005.0
+    - Pasajeros: 8
+    - Bus: 29 (Línea: 651B)
+    - Tiempo respuesta: 4.0 min
+
+PARADA DESTINO: bus_stop 150 (PARADA INICIO: bus_stop 47)
+  Asignación 1:
+    - Hora: 3293.0
+    - Pasajeros: 6
+    - Bus: 27 (Línea: 651B)
+    - Tiempo respuesta: 2.0 min
+
+PARADA DESTINO: bus_stop 88 (PARADA INICIO: bus_stop 47)
+  Asignación 1:
+    - Hora: 3293.0
+    - Pasajeros: 8
+    - Bus: 5 (Línea: L2)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 2:
+    - Hora: 3527.0
+    - Pasajeros: 6
+    - Bus: 5 (Línea: L2)
+    - Tiempo respuesta: 2.0 min
+
+PARADA DESTINO: bus_stop 169 (PARADA INICIO: bus_stop 47)
+  Asignación 1:
+    - Hora: 3293.0
+    - Pasajeros: 8
+    - Bus: 27 (Línea: 651B)
+    - Tiempo respuesta: 4.0 min
+
+PARADA DESTINO: bus_stop 90 (PARADA INICIO: bus_stop 47)
+  Asignación 1:
+    - Hora: 3293.0
+    - Pasajeros: 6
+    - Bus: 5 (Línea: L2)
+    - Tiempo respuesta: 5.0 min
+
+PARADA DESTINO: bus_stop 152 (PARADA INICIO: bus_stop 140)
+  Asignación 1:
+    - Hora: 3622.0
+    - Pasajeros: 6
+    - Bus: 29 (Línea: 651B)
+    - Tiempo respuesta: 5.0 min
+
+  Asignación 2:
+    - Hora: 3892.0
+    - Pasajeros: 9
+    - Bus: 27 (Línea: 651B)
+    - Tiempo respuesta: 5.0 min
+
+  Asignación 3:
+    - Hora: 4005.0
+    - Pasajeros: 9
+    - Bus: 29 (Línea: 651B)
+    - Tiempo respuesta: 5.0 min
+
+PARADA DESTINO: bus_stop 50 (PARADA INICIO: bus_stop 116)
+  Asignación 1:
+    - Hora: 5451.0
+    - Pasajeros: 6
+    - Bus: 33 (Línea: L2)
+    - Tiempo respuesta: 3.0 min
+
+PARADA DESTINO: bus_stop 47 (PARADA INICIO: bus_stop 116)
+  Asignación 1:
+    - Hora: 5451.0
+    - Pasajeros: 6
+    - Bus: 33 (Línea: L2)
+    - Tiempo respuesta: 4.0 min
+
+RESUMEN ESTADÍSTICO
+- Paradas dinámicas creadas: 17
+- Asignaciones totales: 57
+- Bus más activo: 14 (Línea 651A) con 8 asignaciones
+
+======================================================================

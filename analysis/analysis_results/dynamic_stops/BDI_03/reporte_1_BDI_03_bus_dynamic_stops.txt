@@ -1,0 +1,47 @@
+REPORTE DETALLADO DE PARADAS DINÁMICAS - 1_BDI_03_bus_dynamic_stops
+======================================================================
+
+PARADA DESTINO: bus_stop 1 (PARADA INICIO: bus_stop 152)
+  Asignación 1:
+    - Hora: 2274.0
+    - Pasajeros: 11
+    - Bus: 16 (Línea: 652A)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 2:
+    - Hora: 2624.0
+    - Pasajeros: 22
+    - Bus: 19 (Línea: L2)
+    - Tiempo respuesta: 2.0 min
+
+  Asignación 3:
+    - Hora: 4063.0
+    - Pasajeros: 22
+    - Bus: 30 (Línea: 652A)
+    - Tiempo respuesta: 2.0 min
+
+PARADA DESTINO: bus_stop 128 (PARADA INICIO: bus_stop 152)
+  Asignación 1:
+    - Hora: 2274.0
+    - Pasajeros: 11
+    - Bus: 17 (Línea: 652B)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 2:
+    - Hora: 2624.0
+    - Pasajeros: 14
+    - Bus: 20 (Línea: 651A)
+    - Tiempo respuesta: 3.0 min
+
+  Asignación 3:
+    - Hora: 4063.0
+    - Pasajeros: 16
+    - Bus: 23 (Línea: 652B)
+    - Tiempo respuesta: 3.0 min
+
+RESUMEN ESTADÍSTICO
+- Paradas dinámicas creadas: 2
+- Asignaciones totales: 6
+- Bus más activo: 16 (Línea 652A) con 1 asignaciones
+
+======================================================================

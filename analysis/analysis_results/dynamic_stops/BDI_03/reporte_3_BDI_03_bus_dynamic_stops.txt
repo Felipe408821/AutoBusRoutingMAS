@@ -1,0 +1,2 @@
+REPORTE PARA 3_BDI_03_bus_dynamic_stops
+No se encontraron paradas dinámicas confirmadas.

@@ -1,27 +1,43 @@
-/**
-* Name: Modelobase
-* Based on the internal empty template. 
+/*
+* Name: BaselineModel
 * Author: A. Felipe Camacho Martínez
 * Tags: UC3M
 */
 
 model BaselineModel
 
-
 global {
 	// Carga de archivos GeoJSON
-    file roads_file <- file("/Users/felipe/PycharmProjects/GeoJsonMapGenerator/geojson/aristas.geojson");
-    file nodes_file <- file("/Users/felipe/PycharmProjects/GeoJsonMapGenerator/geojson/nodos.geojson");
-    file building_file <- file("/Users/felipe/PycharmProjects/GeoJsonMapGenerator/geojson/edificios.geojson");
-    file bus_stop_file <- file("/Users/felipe/PycharmProjects/GeoJsonMapGenerator/geojson/paradas.geojson");
+    file roads_file <- file("geojson/aristas.geojson");
+    file nodes_file <- file("geojson/nodos.geojson");
+    file building_file <- file("geojson/edificios.geojson");
+    file bus_stop_file <- file("geojson/paradas.geojson");
     geometry shape <- envelope(roads_file) #m;
     graph road_network;
     
-    // Variables globales
+    // ---------------------------------------------------------- CONTROL TEMPORAL ---------------------------------------------------------
     float step <- 1#s;
-    float ini_time <- 3600#s; // Como la demanda varía en función de la hora, variable para fijar la hora de inicio
-	float max_time <- 3600#s; // 1 hora 3600s
+	float max_time <- 3600#s; // Duración de la simulación 1 hora - 3600s.
+	float hora_init <- 8.00; // Hora de inicio de la simulación de [00:00 a 23:00].
+	float init <- hora_init * 3600;
+	bool ic_flag <- false;
 	
+	int n_simulaciones <- 3;
+	
+    float t_inicial; 
+    float t_final;
+    
+    bool fin_simulacion <- false;
+	
+	// ----------------------------------------------------------- CONTROL LOGS ------------------------------------------------------------	
+	bool bus_console_logs <- false;
+    bool events_console_logs <- false;
+    bool passengers_console_logs <- false;
+    bool dynamic_analysis_console_logs <- false;
+    string prefix <- "BAS";
+    
+    bool tests_console_logs <- false;
+    
 	// ---------------------------------------------------------------- RUTAS --------------------------------------------------------------
     intersection start_point_madrid;
     intersection start_point_gp;
@@ -36,20 +52,36 @@ global {
 	list<bus_stop> route_l1;
 	list<bus_stop> route_l2;
 	
-	list stops_651A <- ['06230', '09094', '07304', '06232', '06233', '06234', '06235', '06236', '06215', '06237', '06216', '06176', '06240', '11859', '11860', '11862', '11865', '11867', '09409', '11855', '10491', '18613', '06177', '12995'];
-	list stops_651B <- ['06244', '18072', '18612', '11835', '11854', '11856', '11868', '11866', '11861', '06518', '06424', '06205', '06249', '06212', '06250', '06251', '06252', '06253', '06254'];
+	list stops_651A <- ['06230', '09094', '07304', '06232', '06233', '06234', '06235', '06236', '06215', '06237', '06216', '06176', '06240', '11859', '11860', '11862', '11865', '11867', '09409', '06242', '11855', '10491', '18613', '06177', '12995'];
+	list stops_651B <- ['06244', '18072', '18612', '11835', '11854', '11856', '11868', '11866', '11861', '06518', '06424', '06205', '06249', '06212', '06250', '06251', '06252', '06253', '06254', '06230'];
 	list stops_652A <- ['06230', '09094', '07304', '06232', '06233', '06234', '06235', '06236', '06178', '11857', '11858', '17330', '17332', '17334', '18882', '20611'];
-	list stops_652B <- ['20611', '17336', '17335', '17333', '17331', '06242', '06203', '06250', '06251', '06252', '06253', '06254', '07305', '09093', '06256'];
-	list stops_l1 <- ['17923', '17685', '11385', '11417', '12747', '12994', '12992', '18070', '12990', '12991', '12993', '12748', '18073', '18612', '11835', '11854', '11858', '17330', '18498', '11861', '06518', '06424', '06205', '17742', '12500', '12504', '06251', '06252', '06253', '06254', '13003', '17700', '12905', '12906', '12907', '09407', '12995', '11421', '08792', '12066', '09368', '08790', '08788', '12679', '15188', '17270', '17724', '17925', '17923'];
-	list stops_l2 <- ['17924', '17683', '17725', '17721', '17269', '15189', '08787', '08789', '09368', '12067', '08791', '11420', '06244', '12271', '06429', '12908', '12909', '12910', '17699', '16386', '06232', '06233', '06234', '06235', '12503', '12499', '17743', '06176', '06240', '11859', '11860', '18497', '17331', '06242', '09409', '11855', '10491', '18613', '18071', '06245', '08796', '12994', '12992', '18070', '12990', '12991', '12993', '12989', '11418', '11386', '17684', '17924'];
+	list stops_652B <- ['20611', '17336', '17335', '17333', '17331', '06242', '06203', '06250', '06251', '06252', '06253', '06254', '06230','07305', '09093', '06256'];
+	list stops_l1 <- ['17923', '17685', '11385', '11417', '12747', '12994', '12992', '18070', '12990', '12991', '12993', '12748', '18073', '18612', '11835', '11854', '11858', '17330', '18498', '11861', '06518', '06424', '06205', '17742', '12500', '12504', '06251', '06252', '06253', '06254', '13003', '17700', '12905', '12906', '12907', '09407', '12995', '11421', '08792', '12066', '09368', '08790', '08788', '12679', '15188', '17270', '11385', '17724', '17925', '17923'];
+	list stops_l2 <- ['17923', '17924', '17683', '17725', '17721', '17269', '15189', '08787', '08789', '09368', '12067', '08791', '11420', '06244', '12271', '06429', '12908', '12909', '12910', '17699', '16386', '06232', '06233', '06234', '06235', '12503', '12499', '17743', '06176', '06240', '11859', '11860', '18497', '17331', '06242', '09409', '11855', '10491', '18613', '18071', '06245', '08796', '12994', '12992', '18070', '12990', '12991', '12993', '12989', '11418', '11386', '17684', '17924','17923'];
 	list all_routes <- (stops_651A + stops_651B + stops_652A + stops_652B + stops_l1 + stops_l2);
+	
+	list all_routes_pruebas <- ['06176', '06177', '06178', '06203', '06205', '06212', '06215', '06216', '06230', '06232', 
+						  '06233', '06234', '06235', '06236', '06237', '06240', '06242', '06244', '06245', '06249', 
+						  '06250', '06251', '06252', '06253', '06254', '06256', '06424', '06429', '06518', '07304', 
+						  '07305', '08787', '08788', '08789', '08790', '08791', '08792', '08796', '09093', '09094', 
+					      '09368', '09407', '09409', '10491', '11385', '11386', '11417', '11418', '11420', '11421', 
+						  '11835', '11854', '11855', '11856', '11857', '11858', '11859', '11860', '11861', '11862', 
+						  '11865', '11866', '11867', '11868', '12066', '12067', '12271', '12499', '12500', '12503', 
+						  '12504', '12679', '12747', '12748', '12905', '12906', '12907', '12908', '12909', '12910', 
+						  '12989', '12990', '12991', '12992', '12993', '12994', '12995', '13003', '15188', '15189', 
+						  '16386', '17269', '17270', '17330', '17331', '17332', '17333', '17334', '17335', '17336', 
+						  '17683', '17684', '17685', '17699', '17700', '17721', '17724', '17725', '17742', '17743', 
+						  '17923', '17924', '17925', '18070', '18071', '18072', '18073', '18497', '18498', '18612', 
+						  '18613', '18882', '20611'];
+    
 	list<bus_stop> sub_bus_stops <- [];
     		
     map<string, list<bus_stop>> lineas_group;
-
-	float frecuency_651 <- 601#s; // 10 minutos
-	float frecuency_652 <- 901#s; // 15 minutos
-	float frecuency_l <- 1801#s; // 30 minutos
+	map<bus_stop, list> accessibility_map;
+	
+	float frequency_651;
+	float frequency_652;
+	float frequency_l;
 	
 	float time_651 <- 0#s;
 	float time_652 <- 0#s;
@@ -58,7 +90,7 @@ global {
 	// --------------------------------------------- MODELO GENERACIÓN DE DEMANDA DE PASAJEROS ---------------------------------------------
 	// Variables para la generación de la demanda de pasajeros
 	float pi <- 3.141592653589793;
-	float lambda_base <- 1.0; // Tasa base de generación de pasajeros (λ_0)
+	float lambda_base <- 3; // Tasa base de generación de pasajeros (λ_0)
 	float dem; // Dem(t)
 	int event; // Event
 	float prob_og; // ProbOg(v)
@@ -76,50 +108,38 @@ global {
         "S"     :: ["07304"::0.05, "07305"::0.20, "06236"::0.10, "06250"::0.20, "20611"::0.10, "11385"::0.10, "17923"::0.10, "S"::0.15]
     ];
     
-    map<string, map<string, string>> eiijemplo <- [
-    	"Pasajero" :: ["06236"::"S"]
-    ];
-    
-    int frecuency_passengers <- 1201#s; // 20 minutos
+    int frequency_passengers <- 1201#s; // 20 minutos
     float time_passengers <- 0#s;
-	
-	// TEMPORAL PRUEBAS
-	bool comentarios <- false;
-	bool ini <- true;
-	bool pruebas <- true;
-	
+    int total_passengers <- 0;
+    
     // ------------------------------------------------------------- PREDICADOS ------------------------------------------------------------
-    predicate aborda <- new_predicate("aborda");
-	predicate bus_lleno <- new_predicate("bus_lleno");
-    predicate carretera_congestionada <- new_predicate("carretera_congestionada");
-	predicate carretera_bloqueada <- new_predicate("carretera_bloqueada");
-	predicate circula_por <- new_predicate("circula_por");
-    predicate desembarca <- new_predicate("desembarca");
-	predicate destino_alcanzado <- new_predicate("destino_alcanzado");
-	predicate destino_asignado <- new_predicate("destino_asignado");
-    predicate informar_eventos <- new_predicate("informar_eventos");
-	predicate omite_parada <- new_predicate("omite_parada");
-	predicate parada_saturada <- new_predicate("parada_saturada");
-	predicate pasajero_esperando <- new_predicate("pasajero_esperando");
-	predicate ruta_asignada <- new_predicate("ruta_asignada");
-	predicate ruta_finalizada <- new_predicate("ruta_finalizada");
-	predicate se_detiene_en <- new_predicate("se_detiene_en");
-	predicate transbordo <- new_predicate("transbordo");
-	
+   	predicate ruta_finalizada <- new_predicate("ruta_finalizada");
+
 	// --------------------------------------------------------------- LOGS  ---------------------------------------------------------------
 	list<list> logs_bus_generation;
 	list<list> logs_bus_results;
 	
 	list<list> logs_passengers_generation;
 	list<list> logs_passengers_results;
+	
+	list<list> logs_service_frequency;
+	
+	list<list> logs;
+	
+	list<list> logs_execution_time;
     
     // ----------------------------------------------------------- INICIALIZACIÓN ----------------------------------------------------------	
     init {
+    	t_inicial <- #now;
+	
+	    if hora_init = 8 { prefix <- "BAS_01";}
+	    else if hora_init = 11 { prefix <- "BAS_02";}
+	    else if hora_init = 14 { prefix <- "BAS_03";}
+    	
         create intersection from: nodes_file;
         create building from: building_file;
         create bus_stop from: bus_stop_file;
         
-        // Crear carreteras bidireccionales
         create road from: roads_file {
             create road {
                 num_lanes <- myself.num_lanes;
@@ -136,7 +156,7 @@ global {
         start_point_gp <- intersection(430);
         start_point_macas <- intersection(108);
 		start_point_l <- intersection(1381);
-		start_point_l2 <- intersection(1146); 
+		start_point_l2 <- intersection(1146);
 		
     	route_651A <- create_route(stops_651A);
     	route_651B <- create_route(stops_651B);
@@ -150,34 +170,105 @@ global {
 	    	"651B":: route_651B,
 	    	"652A":: route_652A,
 	        "652B":: route_652B,
-	        "L1":: route_l1,
+	     	"L1":: route_l1,
 	        "L2":: route_l2
 	    ];
+
+	    do precompute_accessibility();
+	    
+		if ic_flag {
+			prefix <- prefix + "_IC";
+			
+			frequency_651 <- 300#s; // 5 minutos
+			frequency_652 <- 600#s; // 10 minutos
+			frequency_l <- 600#s; // 10 minutos
+		} else {
+			frequency_651 <- 600#s; // 10 minutos
+			frequency_652 <- 900#s; // 15 minutos
+			frequency_l <- 900#s; // 15 minutos
+		}
 	    
 	    // --------------------------------------------------------------- LOGS  ---------------------------------------------------------------
-      	logs_bus_generation << ["Bus", "linea", "hora"] + "\n";
-      	logs_bus_results << ["Bus", "linea", "hora", "ruta_finalizada", "num_pasajeros"] + "\n";
+	    logs_bus_generation << ["bus", "linea", "hora"] + "\n";
+      	logs_bus_results << ["bus", "linea", "hora", "ruta_finalizada", "num_pasajeros"] + "\n";
+      	logs_service_frequency << ["parada", "frecuencias"];
        
-        logs_passengers_generation << ["Pasajero", "hora", "inicio", "ref_inicio", "destino", "ref_destino"] + "\n";
-        logs_passengers_results << ["Pasajero", "tiempo_espera", "tiempo_viaje", "tiempo_transbordo", "tiempo_total"] + "\n";
-		
-		if !pruebas{
-			create bus with: [ruta: route_651A, hora_inicio: to_military_time(time), linea: "651A", location: start_point_madrid.location] number: 1;
-	        create bus with: [ruta: route_651B, hora_inicio: to_military_time(time), linea: "651B", location: start_point_macas.location] number: 1;
-	        create bus with: [ruta: route_652A, hora_inicio: to_military_time(time), linea: "652A", location: start_point_madrid.location] number: 1;
-	        create bus with: [ruta: route_652B, hora_inicio: to_military_time(time), linea: "652B", location: start_point_gp.location] number: 1;
-	        create bus with: [ruta: route_l1, hora_inicio: to_military_time(time), linea: "l1", location: start_point_l.location] number: 1;
-	        create bus with: [ruta: route_l2, hora_inicio: to_military_time(time), linea: "l2", location: start_point_l2.location] number: 1;
-		} else {
-			create bus with: [ruta: route_l1, hora_inicio: to_military_time(time), linea: "l1", location: start_point_madrid.location] number: 1;
-			create bus with: [ruta: route_651B, hora_inicio: to_military_time(time), linea: "651B", location: start_point_madrid.location] number: 1;
-		}
+        logs_passengers_generation << ["pasajero", "hora", "inicio", "ref_inicio", "destino", "ref_destino"] + "\n";
+        logs_passengers_results << ["pasajero", "tiempo_espera", "tiempo_viaje", "tiempo_transbordo", "tiempo_total"] + "\n";
+	    
+		// -------------------------------------------------------------- BUSES  ---------------------------------------------------------------
+		create bus with: [ruta: route_651A, hora_inicio: to_military_time(time), linea: "651A", location: start_point_madrid.location] number: 1;
+        create bus with: [ruta: route_651B, hora_inicio: to_military_time(time), linea: "651B", location: start_point_macas.location] number: 1;
+        create bus with: [ruta: route_652A, hora_inicio: to_military_time(time), linea: "652A", location: start_point_madrid.location] number: 1;
+        create bus with: [ruta: route_652B, hora_inicio: to_military_time(time), linea: "652B", location: start_point_gp.location] number: 1;
+		create bus with: [ruta: route_l1, hora_inicio: to_military_time(time), linea: "L1", location: start_point_l.location] number: 1;
+        create bus with: [ruta: route_l2, hora_inicio: to_military_time(time), linea: "L2", location: start_point_l2.location] number: 1;
 		
 		list <bus_stop> c <- cut_bus_stops();
 		
+		// ----------------------------------------------------------- CONSOLE LOGS  -----------------------------------------------------------
+		write "-----------------------------------------------------------------------------";
+		write "[LOGS] SIMULACIÓN: " + n_simulaciones;
+		write "-----------------------------------------------------------------------------";
+	}
+	
+	
+	// -------------------------------------------------------- FUNCIONES AUXILIARES -------------------------------------------------------
+    action precompute_accessibility {
+		loop origen over: all_routes_pruebas {
+        	loop destino over: all_routes_pruebas {
+                if (origen != destino) {
+                    
+                    // Primero: calcular conexiones directas
+                    bus_stop ori <- first(bus_stop where (each get "ref" = origen));
+                    bus_stop des <- first(bus_stop where (each get "ref" = destino));
+                    
+                    loop l over: lineas_group.keys {
+                    	
+                        if (des in lineas_group[l] and ori in lineas_group[l]) {
+                            int pos_origen <- lineas_group[l] index_of ori;
+                            int pos_destino <- lineas_group[l] index_of des;
+
+                            if pos_destino > pos_origen {
+                            	if accessibility_map[ori] = nil{
+		                    		accessibility_map[ori] <- [des];
+		                    	} else if !(des in accessibility_map[ori]){		                    		
+		                    		accessibility_map[ori] << des;
+		                    	}
+                            }
+                        }
+                    }
+                    
+                    // Segundo: calcular conexiones
+					list<string> lines_of_origen <- lineas_group.keys where (ori in lineas_group[each]);
+                    list<string> lines_to_dest <- lineas_group.keys where (des in lineas_group[each]);
+                    
+                    loop line1 over: lines_of_origen {
+                        int pos_origen_line1 <- lineas_group[line1] index_of ori;
+                        
+                        loop line2 over: lines_to_dest where (each != line1) {
+                            int pos_dest_line2 <- lineas_group[line2] index_of des;
+                            
+                            loop stop over: lineas_group[line1] where (each in lineas_group[line2] and each != ori) {
+                                int pos_transfer_line1 <- lineas_group[line1] index_of stop;
+                                int pos_transfer_line2 <- lineas_group[line2] index_of stop;
+                                
+                                if (pos_transfer_line1 > pos_origen_line1) and (pos_dest_line2 > pos_transfer_line2) {
+
+                            		if accessibility_map[ori] = nil{
+			                    		accessibility_map[ori] <- [des];
+			                    	} else if !(des in accessibility_map[ori]) {		                    		
+			                    		accessibility_map[ori] << des;
+			                    	}
+								}
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
-    
-    // -------------------------------------------------------- FUNCIONES AUXILIARES -------------------------------------------------------
+	
 	list<bus_stop> create_route (list<string> ref_codes){
 		list<bus_stop> route <- [];
 		 bus_stop stop;
@@ -191,20 +282,20 @@ global {
 		return route;
 	}
 	
-    reflex create_buses when: pruebas {    	
-        if (time - time_651 >= frecuency_651) {
+    reflex create_buses when: !fin_simulacion {    	
+        if (time - time_651 >= frequency_651) {
             create bus with: [ruta: route_651A, hora_inicio: to_military_time(time), linea: "651A", location: start_point_madrid.location] number: 1;
             create bus with: [ruta: route_651B, hora_inicio: to_military_time(time), linea: "651B", location: start_point_macas.location] number: 1;
             time_651 <- time;
         }
-        if (time - time_652 >= frecuency_652) {
+        if (time - time_652 >= frequency_652) {
             create bus with: [ruta: route_652A, hora_inicio: to_military_time(time), linea: "652A", location: start_point_madrid.location] number: 1;
             create bus with: [ruta: route_652B,hora_inicio: to_military_time(time), linea: "652B", location: start_point_gp.location] number: 1;
             time_652 <- time;
         }
-        if (time - time_l >= frecuency_l) {
-            create bus with: [ruta: route_l1, hora_inicio: to_military_time(time), linea: "l1", location: start_point_l.location] number: 1;
-            create bus with: [ruta: route_l2, hora_inicio: to_military_time(time), linea: "l2", location: start_point_l2.location] number: 1;
+        if (time - time_l >= frequency_l) {
+            create bus with: [ruta: route_l1, hora_inicio: to_military_time(time), linea: "L1", location: start_point_l.location] number: 1;
+            create bus with: [ruta: route_l2, hora_inicio: to_military_time(time), linea: "L2", location: start_point_l2.location] number: 1;
             time_l <- time;
         }
     }
@@ -221,36 +312,37 @@ global {
     	}
     	return sub_bus_stops;
     }
+
     
     // -------------------------------------------------------------- EVENTOS --------------------------------------------------------------
     // Función para bloquear aleatoriamente carreteras
     reflex block_road{
-    	bool block <- flip(0.01); 
-        if (block) {
-			road calle_cortada <- one_of(road_network.edges);
-    		ask calle_cortada {
+    	bool block <- flip(0.001); 
+
+    	if (block) {
+			road calle_cortada <- one_of(road);
+			ask calle_cortada {
                 color <- #red;
                 blocked <- true;
-            }
+            }   
+            
             road_network <- as_driving_graph((road_network.edges-calle_cortada), intersection);
-            if (comentarios){
-            	write "[INFO] Incidente se ha cortado la siguiente calle " + calle_cortada;
-            }
-        }
+            if (events_console_logs){write "[INCIDENT] The following road has been cut off " + calle_cortada;}
+    	}
     }
     
     // Función para generar tráfico aleatoriamente en las carreteras
     reflex traffic_road{
-    	bool traffic <- flip(0.05); 
+    	bool traffic <- flip(0.001);
+        
         if (traffic) {
 			road calle_trafico <- one_of(road_network.edges);
     		ask calle_trafico {
                 color <- #orange;
                 traffic <- true;
-                maxspeed <- maxspeed * 0.75;
-            }
-            if (comentarios){
-            	write "[INFO] Tráfico lento en la siguiente calle " + calle_trafico;
+                maxspeed1 <- maxspeed;
+                maxspeed <- maxspeed * 0.25;
+                if (events_console_logs){write "[INCIDENT] Slow traffic on the following street " + calle_trafico + " street speed has been reduced from " + maxspeed1 + " to " + maxspeed;}
             }
         }
     }
@@ -283,30 +375,29 @@ global {
     
     // Función para generar el número de pasajeros en cada parada
 	map<bus_stop, int> generate_passengers(float t) {
-	    int aux;
-	    int aux_suma;
-    	map<bus_stop, int> passengers_per_stop;
-       
-	    event <- one_of ([1,1,1,1,1,1,1,1,2,2]); // Event
-	    
+		map<bus_stop, int> passengers_per_stop;
+	    event <- one_of ([1,1,1,1,1,1,1,1,1,2]); // Event
 	    // IMPORTANTE Aquí generaremos solo pasajeros en paradas que tengan rutas asignadas
 	    loop v over: sub_bus_stops {
-	    	aux <- calculate_poisson(t, v, event);
-	    	aux_suma <- aux_suma + aux;
-	    	passengers_per_stop[v] <- aux;
+	    	if (v != bus_stop(63)) and (v!= bus_stop(124)) and (v!= bus_stop(174)) and (v!= bus_stop(163)) and (v!= bus_stop(5)) and (v!= bus_stop(7)){
+	    		passengers_per_stop[v] <- calculate_poisson(t, v, event);
+	    	}
 	    }
 	    return passengers_per_stop;
 	}
-
+	
 	// Función para asignar destinos a los pasajeros
-	bus_stop assign_destination(string origen) {
+	bus_stop assign_destination (string origen) {
 		map<string, float> destinos;
+		bus_stop parada_origen <- first(bus_stop where (each get "ref" = origen));
+		
 		if (OD_matrix.keys contains origen) {
 		    destinos <- OD_matrix[origen];
 		} else {
 		    destinos <- OD_matrix["S"];  
 		}
-	    list<string> destinos_lista <- keys(destinos);
+		
+	    list<string> destinos_posibles <- keys(destinos);
 	    list<float> probabilidades <- values(destinos);
 	    
 	    float random_value <- rnd(0.0, 1.0);
@@ -322,38 +413,66 @@ global {
 	        index <- i;
 	    }
 	    
-	    if destinos_lista[index] != "S"{
-	    	return first(sub_bus_stops where (each get "ref" = destinos_lista[index]));
+	    if destinos_posibles[index] != "S"{
+			if tests_console_logs { write "Parada origen " + parada_origen + " ref " + origen;}
+			
+			bus_stop parada_destino_a <- first(sub_bus_stops where (each get "ref" = destinos_posibles[index]));
+			
+			if tests_console_logs { write "[1] Destino " + parada_destino_a + " ref " + destinos_posibles[index];}
+
+	    	if parada_destino_a in accessibility_map[parada_origen] {
+				if tests_console_logs {write "[2a] Destino " + parada_destino_a + " ref " + destinos_posibles[index];}
+	    		return parada_destino_a;
+	    	} else {
+	    		bus_stop parada_destino_aa <- one_of(accessibility_map[parada_origen]);
+				if tests_console_logs {write "[2b] Destino " + parada_destino_aa + " ref " + parada_destino_aa get "ref";}
+	    		return parada_destino_aa;
+	    	}
+
 	    } else {
-	    	return one_of(sub_bus_stops);
-	    }
+	    	if tests_console_logs {write "Parada origen " + parada_origen + " ref " + origen;}
+    		if tests_console_logs {write "Destinos alcanzables " + accessibility_map[parada_origen];}
+    		
+    		bus_stop parada_destino_b <- one_of(accessibility_map[parada_origen]);
+    		
+    		if tests_console_logs {write "Destino " + parada_destino_b + " ref " + parada_destino_b get "ref";}
+    		
+			return parada_destino_b;
+		}
 	}
-	
+
 	// Función que ensambla los datos para generar los pasajeros
 	int assemble_passenger(float t){
 		map<bus_stop, int> aux_generados <- generate_passengers(t);
 		int total_generados <- 0;
 
 	    loop v over: aux_generados.keys {
-	    	loop i from: 1 to: aux_generados[v] {
-		    	bus_stop parada_destino <- assign_destination(v.name);
-		    	
-		    	create passenger with: [location: v.location, hora_inicio: to_military_time(time), parada_inicial: v, destino: [parada_destino]];
-		    	total_generados <- total_generados + 1;
+	    	if aux_generados[v] != 0 {
+		    	loop i from: 1 to: aux_generados[v] {
+					bus_stop parada_destino <- assign_destination(v get "ref");
+					create passenger with: [location: v.location, hora_inicio: to_military_time(time), parada_inicial: v, destino: [parada_destino]];
+			    	total_generados <- total_generados + 1;
+	    		}
 	    	}
 	    }
-	    
+
 	    return total_generados;
 	}
 
 	// Función que genera pasajeros cada X tiempo
-	reflex passengers {
-		if mod(int(time), frecuency_passengers) = 0 {
-			int generados <- assemble_passenger((time/60)/100);
-			
-			write "[HORA]: segundos " + time + " minutos " + (time/60) + " en horas " + to_military_time(time) + " se han generado un total de " + generados + " pasajeros.";
-			write "\n";
-		}
+	reflex passengers when: mod(cycle, frequency_passengers) = 0 and !fin_simulacion {
+		
+		int hora <- ((init + time) / 3600) mod 24;
+		float minutos <- (((init + time) mod 3600) / 60) / 60;
+		float aux <- hora + minutos;
+
+		int generados <- assemble_passenger(aux);
+		
+		total_passengers <- total_passengers + generados;
+		
+		write "-----------------------------------------------------------------------------";
+		write "[LOGS]: Ciclo " + time + ", Hora: " + to_military_time(init + time) + ", Pasajeros generados: " + generados + ", Total: "+ total_passengers;
+		write "-----------------------------------------------------------------------------" + "\n";	
 	}
 	
 	string to_military_time(float h) {
@@ -366,29 +485,48 @@ global {
 	    return str_hours + ":" + str_minutes + ":" + str_seconds;
 	}
     
-    // ------------------------------------------------------------ FINALIZACIÓN -----------------------------------------------------------	
-    reflex end_simulation when: empty(bus where !each.has_belief(ruta_finalizada)) or time = max_time{
-    	string h <- to_military_time(time);
-    	
+    // ------------------------------------------------------------ FINALIZACIÓN -----------------------------------------------------------		
+	
+	reflex end_simulation when: (mod(cycle, max_time) = 0) and (cycle != 0) {
+		fin_simulacion <- true;
+	}
+	
+	reflex update_simulation when: empty(bus where !each.has_belief(ruta_finalizada)) {
+		do pause;
+    			
     	ask bus{
-    		logs_bus_results << [string(self), self.linea, h, has_belief(ruta_finalizada), (self.capacidad_maxima - self.plazas_disponibles)] + "\n";
-    		//write "[INFO] "  + string(self) + " Ha finalizado su ruta con " + (self.capacidad_maxima - self.plazas_disponibles) + " pasajeros.";
+    		logs_bus_results << [string(self), self.linea, self.hora_fin, has_belief(ruta_finalizada), (self.capacidad_maxima - self.plazas_disponibles)] + "\n";
+    		write "[RESULTS] "  + string(self) + " " + self.linea + " ¿Ha finalizado su ruta?: " + has_belief(ruta_finalizada) + ". Pasajeros actuales: " + (self.capacidad_maxima - self.plazas_disponibles) + ". Detalles: " + self.passengers;
     	}
 
     	ask passenger {
     		logs_passengers_results << [string(self), self.tiempo_espera, self.tiempo_viaje, self.tiempo_transbordo, self.tiempo_total] + "\n";
-    		//write "[TIEMPOS] " + string(self) + " tiempos de espera: " + self.tiempo_espera + " viaje: " + self.tiempo_viaje + " transbordo: " + self.tiempo_transbordo +  " total: " + self.tiempo_total;
+    	}
+		
+		ask bus_stop {
+	      	logs_service_frequency << [self get "ref", self.frecuencia_por_linea];
 		}
+		save logs_bus_generation to: "analysis/experimental_tests/" + prefix + "/" + n_simulaciones + "_" + prefix + "_bus_generation.csv"; 
+		save logs_bus_results to: "analysis/experimental_tests/" + prefix + "/" + n_simulaciones + "_" + prefix + "_bus_results.csv";
+		save logs_service_frequency to: "analysis/experimental_tests/" + prefix + "/" + n_simulaciones + "_" + prefix + "_service_frequency.csv";
+			
+		save logs_passengers_generation to: "analysis/experimental_tests/" + prefix + "/" + n_simulaciones + "_" + prefix + "_passengers_generation.csv"; 
+		save logs_passengers_results to: "analysis/experimental_tests/" + prefix + "/" + n_simulaciones + "_" + prefix + "_passengers_results.csv"; 
+
+		save logs to: "analysis/experimental_tests/" + prefix + "/" + n_simulaciones + "_" + prefix + "_logs.csv"; 	
 		
-		save logs_bus_generation to: "exports/bus_generation_basic.csv"; 
-		save logs_bus_results to: "exports/bus_results_basic.csv";
-				
-		save logs_passengers_generation to: "exports/passengers_generation_basic.csv"; 
-		save logs_passengers_results to: "exports/passengers_results_basic.csv"; 
-		
-		do pause;
+		t_final <- #now;	
+		logs_execution_time << [(t_final-t_inicial), cycle];
+		save logs_execution_time to: "analysis/experimental_tests/" + prefix + "/" + n_simulaciones + "_" + prefix + "_execution_time.csv"; 	
+    	
+		// ----------------------------------------------------------- CONSOLE LOGS  -----------------------------------------------------------
+		write "-----------------------------------------------------------------------------";
+		write "[RESULTS] SIMULACIÓN: " + n_simulaciones + ", TIEMPO TOTAL: " + (t_final-t_inicial) + " SEGUNDOS, CICLOS: " + cycle;
+		write "-----------------------------------------------------------------------------";
 	}
 }
+
+
 
 // -------------------------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------- MAPA -----------------------------------------------------------------
@@ -396,6 +534,7 @@ global {
 species road skills: [road_skill] {
 	bool blocked <- false;
 	bool traffic <- false;
+	float maxspeed1;
     rgb color <- rgb(64, 64, 64); // Color de las carreteras
     
     aspect base {
@@ -412,417 +551,575 @@ species building {
     }
 }
 
+
 // -------------------------------------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------- PARADAS ---------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------------------------
 species bus_stop skills: [fipa] {
-	bool saturada <- false; // Booleano que indica si una parada está saturada debido al número de pasajeros que se encuentra en ella.
+	// --------------------------------------------------------- ESTADO INTERNO ------------------------------------------------------------
 	bool ocupada <- false; // Booleano que indica si la parada está siendo utilizada por un bus para operaciones de embarque o desembarque.
-	int total_pasajeros <- 0;
-	map<bus_stop, int> destino_pasajeros; // Agrupación del número de pasajeros por destino en la parada.
-	list<passenger> pasajeros_transbordo; // Listado de los pasajeros que se encuentran en la parada haciendo transbordo.
-	int alerta_saturacion <- 20;
+	bool bloqueada <- false; // Booleano que indica si una parada es inaccesible.
+	map<string, list<string>> frecuencia_por_linea; // Frecuencia de cada servicio o linea por parada, cuantos autobuses paran en la parada durante la simulación.
 
-	// --------------------------------------------------------- PROTOCOLOS FIPA -----------------------------------------------------------
 	reflex receive_inform when: !empty(informs) {
-		message info <- informs[0];			
-		do end_conversation message: info contents: [];
+		loop i over: informs {
+			list content <- list(i.contents);
+			
+			if content[0] = "Registro servicio" {
+				// Protocolo 8: Registro frecuencia del servicio
+				if events_console_logs {write '[LOGS] ' + self + ' register the service of ' + content[1] + " time: " + content[2];}
+				if frecuencia_por_linea[content[1]] != nil {
+		        	frecuencia_por_linea[content[1]] << content[2];
+		        } else {
+		        	frecuencia_por_linea[content[1]] <- [content[2]];
+	        	}	
+	        	do end_conversation message: i contents: [];
+			}	
+		}
 	}
 
+	// -------------------------------------------------------------- ASPECTO --------------------------------------------------------------
     aspect base {
-        draw image("/Users/felipe/PycharmProjects/GeoJsonMapGenerator/images/parada.png") size: {10, 15};
+        draw image("images/parada.png") size: {10, 15};
     }
 }
+
 
 // -------------------------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------- BUS -----------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------------------------
 species bus skills: [driving, fipa] control: simple_bdi {
-	string request_subir <- "subir";
-	string hora_inicio;
-	
-    // -------------------------------------------------------------- HECHOS ---------------------------------------------------------------
-	int capacidad_maxima;
+    // ------------------------------------------------------------ CREENCIAS --------------------------------------------------------------
+    predicate ruta_asignada;
+    predicate en_parada <- new_predicate("en_parada");
+    predicate desembarcar <- new_predicate("desembarcar");
+    predicate propus_enviadas <- new_predicate("propus_enviadas");
+    predicate registro_llegada <- new_predicate("registro_llegada");
+    predicate embarque_completo <- new_predicate("embarque_completo");
+ 
+    string hora_inicio;
+    string hora_fin;
+    string linea;
+    
+    int capacidad_maxima;
     int plazas_disponibles;
-	
-	// --------------------------------------------------------- CREENCIAS INTERNAS --------------------------------------------------------
-    bus_stop siguiente_parada;	
-    bus_stop parada_anterior;
-    float distancia_siguiente_parada <- 0.0;
+	int espera <- 0;
+	int respuestas_esperadas;
+	int respuestas_recibidas;
+    
     bool ruta_calculada <- false;	
     bool ultima_parada <- false;
     
-	// --------------------------------------------------------- CREENCIAS EXTERNAS --------------------------------------------------------
-	list<bus_stop> ruta;
-	string linea;
     intersection interseccion_siguiente_parada;
-    intersection interseccion;
-    list<passenger> passengers <- []; // Pasajeros en el autobús
-    list<passenger> waiting_passengers;
-	bool esperando <- false;
-	int maxima_espera <- 0;
     
-    // EVENTOS CARRETERAS, listado de los eventos activos
-    // NÚMERO DE PASAJEROS EN LA SIGUIENTE PARADA (HAY PASAJEROS)
-    // PASAJERO A RECOGER, NOMBRE Y PARADA (HAY PASAJEROS A DEJAR)
-    // DEJAR PASAJERO, NOMBRE EN PLAN PASAJERO_EN, Y PARADA (PASAJERO_EN)
+    bus_stop siguiente_parada;	
+	bus_stop parada_actual;
     
+    list<bus_stop> ruta;
+    
+    list<passenger> passengers <- [];
     
     // -------------------------------------------------------------- DESEOS ---------------------------------------------------------------
-    // En base a sus creencias el agente genera deseos
-    bool aborda_aux;
-    bool desembarcar;
-    
-    // DESEO COMPLETAR RUTA
-    // en carretera, en parada,
-    // CREENCIA PROXIMA PARADA, RUTA CALCULADA, EVENTOS, PASAJEROS, TENGO QUE PARAR, PLAZAS DISPONIBLES, ULTIMA PARADA, PARADA COMPLETADA 
-	
-	
-	// PLAN CONDUCIR, (VAMOS CHECKEANDO EL ESTADO DE LA CARRETERA POR SI EVENTOS) EN PARADA (RECOGER Y DEJAR PASAJEROS
-	// INTENCION CONDUCIR
-	// estoy lleno creemncia
-	// CREENCIA DE PARADA SATURADA, CREENCIA EVENTOS, creencia estoy en parada, CREENCIA ESTOY DISPONIBLE PARA DESPUES
-	
-	// PLAN ACABAR RUTA, PLAN CONDUCIR, PLAN RECOGER, PLAN ELEGIR PROXIMA PARADA
-	
-	
+    predicate completar_ruta <- new_predicate("completar_ruta");
+    predicate embarcar_pasajeros <- new_predicate("embarcar_pasajeros");
+    predicate gestionar_parada <- new_predicate("gestionar_parada");
 
+    // --------------------------------------------------------- INICIALIZACIÓN ------------------------------------------------------------
     init {
         vehicle_length <- 12 #m; // Longitud de un autobús
         max_speed <- 100 #km / #h; // Velocidad máxima permitida
         max_acceleration <- 1.92; // Aceleración
         capacidad_maxima <- 86; 
         plazas_disponibles <- capacidad_maxima;
+        siguiente_parada <- ruta[0];
+        
+        ruta_asignada <- new_predicate("ruta_asignada", ["ruta"::ruta, "linea"::linea]);
+        do add_belief(ruta_asignada);
+
+        do add_desire(completar_ruta);
         
 	    logs_bus_generation << [string(self), linea, hora_inicio] + "\n";
     }
-	
-	reflex select_next_path when: current_path = nil and not ruta_calculada and not ultima_parada { 
-	    siguiente_parada <- ruta[0];
-	    
-        interseccion_siguiente_parada <- find_intersection();        
-        
-        if (interseccion_siguiente_parada != nil and interseccion_siguiente_parada != self.location) {
-			do compute_path graph: road_network target: interseccion_siguiente_parada;
-
-            if (length(ruta) = 1) {
-                ultima_parada <- true;
-            } else {
-            	ruta <- ruta - ruta[0];
-            }
-        	ruta_calculada <- true;
-        }
-        //write "[BUS] " + self + "/" + linea + " nuevo destino " + siguiente_parada + "/" + siguiente_parada.name + "\n";
-	}
-	
-	intersection find_intersection{
-		intersection aux_destino;
-		float aux_distancia;
-        loop f over: intersection as list {
-            aux_distancia <- distance_to(f.location, siguiente_parada.shape.location);
-            if (aux_distancia = 0) {
-				aux_destino <- f;
-			}
-        }
-        return aux_destino;
-	}
-	
-	reflex commute when: current_path != nil or esperando{
-        if current_path != nil{
-            do drive;	
-        }
-        
-        // distancia_siguiente_parada <- distance_to(self.location, interseccion_siguiente_parada.location);
-        if (interseccion_siguiente_parada.location = self.location){
-        	
-        	if (!siguiente_parada.ocupada){
-	        	
-	        	if !ultima_parada{
-	        		//write "[BUS] " + self + "/" + linea + " ha OCUPADO la parada " + siguiente_parada + "/" + siguiente_parada.name + "\n";
-					
-	        		siguiente_parada.ocupada <- true; // Bloqueo la parada
-		        	parada_anterior <- siguiente_parada;
-		        	esperando <- false;
-		        	ruta_calculada <-false;
-					desembarcar <- true;
-					if (self.plazas_disponibles > 0){
-						aborda_aux <- true;				
-					}
-	        	} else {
-	        		desembarcar <- true;
-	        		do add_belief(ruta_finalizada);
-	        	}	
-        	} else {
-        		esperando <- true;
-        		maxima_espera <- maxima_espera + 1;
-        		
-        		if maxima_espera > 5 {
-        			write "maxima espera alcanzada";
-        			parada_anterior <- siguiente_parada;
-		        	esperando <- false;
-		        	ruta_calculada <-false;
-		        	desembarcar <- true;
-		        	maxima_espera <- 0;
-		        }
-        		
-        		//write "[PROBLEMA] " + self + "/" + linea + " ESPERANDO la parada " + siguiente_parada + "/" + siguiente_parada.name;
-        	}
-        }
-    }
-
-	// ------------------------------------------------------ INTENCIONES / PLANES --------------------------------------------------------- a PARTIR DE LOS DESEOS selecciona algunos para convertirlos en intenciones los planes son agrupaciones de acciones
-	// -------------------------------------------------------------- REGLAS ---------------------------------------------------------------
-	// --------------------------------------------------------- PROTOCOLOS FIPA -----------------------------------------------------------
     
-    reflex let_passengers_off when: desembarcar{
-        list<passenger> passengers_to_remove <- [];
-        
-	    loop p over: passengers {
-	        if (p.destino[0].location = interseccion_siguiente_parada.location) {
-			    passengers_to_remove << p;
-	            plazas_disponibles <- plazas_disponibles + 1;
-	            
-	            if length(p.destino)>1{
-	            	do start_conversation to: [p] protocol: "no-protocol" performative: "inform" contents: ["Transbordo alcanzado", p.destino[0]];
-	            	//write "[PASAJERO-TRANSBORDO] " + p + " ha bajado del autobús " + self + " ruta " + linea + " en la parada " + siguiente_parada + "/" + siguiente_parada.name + " siguiente destino " + p.destino[1];
-	            	
-	            	ask p{
-	            		p.location <- p.destino[0].location;
-	            		p.notificado_parada <- false;	            		
-		            	do remove_belief(aborda);
-		            	do add_belief(transbordo);
-	        	 		do add_belief(pasajero_esperando);
-	            		p.destino <- p.destino - p.destino[0];
-	            	}
-	            } else {
-					do start_conversation to: [p] protocol: "no-protocol" performative: "inform" contents: ["Destino alcanzado", p.destino[0]];
-					//write "[PASAJERO-BAJA] " + p + " ha bajado del autobús " + self + " ruta " + linea + " en la parada " + siguiente_parada + "/" + siguiente_parada.name;
-	            
-	            	ask p{
-            			do remove_belief(transbordo);
-		            	do remove_belief(aborda);
-	        	 		do add_belief(destino_alcanzado);
-	            	}
-	            }
+	// ------------------------------------------------------ INTENCIONES / PLANES ---------------------------------------------------------
+	plan ruta intention: completar_ruta {
+		if has_belief(ruta_finalizada){
+			do remove_intention(get_predicate(get_current_intention()), true);
+			do current_intention_on_hold();
+		} else {
+			if not ruta_calculada {
+				do calcular_ruta;
 	        }
-	    }
-	    
-     	passengers <- passengers - passengers_to_remove;
-     	desembarcar <- false;
-    }
-    
-    reflex propose_boarding_passengers when: aborda_aux{
-    	waiting_passengers <- passenger overlapping (interseccion_siguiente_parada.location);
-    	
-    	if not empty(waiting_passengers){
-    		write "[BUS] " + self + "/" + linea + " en " + parada_anterior + "/" + parada_anterior.name + " Pasajeros " + length(waiting_passengers) + " Plazas dispo " + plazas_disponibles;
+	
+	        if current_path != nil {
+	            do drive;
+	            road r <- current_road;
+				if r.traffic {
+					 if (events_console_logs){write "[INCEDENT] " + self + " reduce the speed due the traffic to " + speed;}
+				}
+			}
+	    	
+			if current_path = nil and interseccion_siguiente_parada.location = self.location {
+				parada_actual <- siguiente_parada;
+				
+				if parada_actual.ocupada {
+		        	espera <- espera + 1;
+
+				} else {					
+		            parada_actual.ocupada <- true;
+		            
+					if bus_console_logs {write "[LOGS] " + self + " " + linea + " lock " + parada_actual + " " + parada_actual.name + " " + parada_actual get "ref" + ". Check(true): " +  parada_actual.ocupada;}
+		            
+		            do add_subintention(get_current_intention(), gestionar_parada, true);
+		            do current_intention_on_hold();
+	            }
+			} 	
+		}
+	}
+	
+    plan gestionar_parada intention: gestionar_parada {
+    	if not has_belief(registro_llegada) {
+	        do registrar_llegada;
+    		do add_belief(registro_llegada);
     	}
     	
-        loop p over: waiting_passengers {
-        	// IF PLAZAS DISPONIBLES CUBR E TODA LA DEMANDA DE WAITING PASSENGER HACER CUT AAQUI PORQUE CREO QUE ESTA DANDO PROBLEMAS
-	    	do start_conversation to: [p] protocol: "fipa-propose" performative: "propose" contents: [request_subir, ruta, linea, self];
-	        //write "Started new conversation with " + p + "\n";     		
+    	if not has_belief(desembarcar) {
+        	do desembarcar_pasajeros;
+        	do add_belief(desembarcar);
         }
         
-		if empty(waiting_passengers) {
-			parada_anterior.ocupada <- false; // Desbloqueo la parada
-        	//write "[BUS] " + self + "/" + linea + " ha liberado la parada " + parada_anterior + "/" + parada_anterior.name + "\n";
-		}        
+        if not ultima_parada and plazas_disponibles > 0 {
+        	do add_subintention(get_current_intention(), embarcar_pasajeros, true);
+            do current_intention_on_hold(); 
+	    } else {
+	    	do add_belief(embarque_completo);
+	    }
         
-    	aborda_aux <- false;
+        if has_belief(embarque_completo) {
+        	do remove_belief(registro_llegada);
+        	do remove_belief(desembarcar);
+        	do remove_belief(propus_enviadas);
+        	do remove_belief(embarque_completo);
+        	
+        	do remove_desire(embarcar_pasajeros);
+        	do reanudar_ruta("desocupar");
+        }
+    }
+	
+    // ----------------------------------------------------------- SUBPLANES ---------------------------------------------------------------
+	action desembarcar_pasajeros {
+        // Protocolo 3: Desembarque de pasajeros
+        list<passenger> passengers_to_remove <- [];
+
+        loop p over: passengers {
+            if p.destino[0].location = interseccion_siguiente_parada.location {
+                if length(p.destino) > 1 {
+                	if bus_console_logs {write "[LOGS] " + p + " gets off " + string(self) + " to transfer at "+ parada_actual + " " + parada_actual.name + ". Itinerary of the passenger: "+ p.destino;}
+                	logs << [time, string(self), linea, "Passenger " + p, "Gets off to transfer at " + parada_actual, parada_actual.name, "Itinerary of the passenger " + p.destino]; logs << "\n";
+            		passengers_to_remove << p;
+            		plazas_disponibles <- plazas_disponibles + 1;
+            		do start_conversation to: [p] protocol: "no-protocol" performative: "inform" contents: ["Transbordo alcanzado", p.destino[0], p.destino[0].location];
+            	
+                } else {
+                	if bus_console_logs {write "[LOGS] " + p + " gets off " + string(self) + " at his destination "+ parada_actual + " " + parada_actual.name;}
+                	logs << [time, string(self), linea, "Passenger " + p, "Gets off at his destination " + parada_actual, parada_actual.name, "Itinerary of the passenger " + p.destino]; logs << "\n";
+					passengers_to_remove << p;
+                	plazas_disponibles <- plazas_disponibles + 1;
+					do start_conversation to: [p] protocol: "no-protocol" performative: "inform" contents: ["Destino alcanzado", p.destino[0]];
+                }
+            }
+        }
+        
+        passengers <- passengers - passengers_to_remove;
     }
     
-    reflex receive_accept when: !empty(accept_proposals) {
-        plazas_disponibles <- plazas_disponibles - 1;
-        
-    	message propuesta_aceptada <- accept_proposals[0];
-    	
-    	do add_belief(new_predicate("transporta", ["pasajero"::propuesta_aceptada.sender]));
-    		
-    	passengers << propuesta_aceptada.sender;
-    	
-    	passenger h <- propuesta_aceptada.sender;
-    	
-    	h.notificado_parada <- false;
-
-		//write "Se cierra " + propuesta_aceptada + "\n";
-		
-    	do end_conversation message: propuesta_aceptada contents: [];
-    	
-		waiting_passengers <- waiting_passengers - propuesta_aceptada.sender;
-		
-		if empty(waiting_passengers) {
-			parada_anterior.ocupada <- false; // Desbloqueo la parada
-        	//write "[BUS] " + self + "/" + linea + " ha liberado la parada " + parada_anterior + "/" + parada_anterior.name + "\n";
+	plan embarcar_pasajeros intention: embarcar_pasajeros {
+		if not has_belief(propus_enviadas){
+			do cfp_embarque;
+			do add_belief(propus_enviadas);
 		}
-    }
-    
-	reflex receive_reject when: !empty(reject_proposals) {
-		message rechazo <- reject_proposals[0];
-
-		//write "Se cierra " + rechazo + "\n";
 		
-		do end_conversation message: rechazo contents: [];	
-		
-		waiting_passengers <- waiting_passengers - rechazo.sender;
-				
-		if empty(waiting_passengers) {
-			parada_anterior.ocupada <- false; // Desbloqueo la parada
-        	//write "[BUS] " + self + "/" + linea + " ha liberado la parada " + parada_anterior + "/" + parada_anterior.name + "\n";
+		if has_belief(embarque_completo){
+			do remove_intention(get_predicate(get_current_intention()), true);
 		}
-    }
+	}
    
+	// ------------------------------------------------------------- ACCIONES --------------------------------------------------------------
+    action calcular_ruta {
+        if not empty(ruta) {
+		    siguiente_parada <- ruta[0];
+		}
+		
+        interseccion_siguiente_parada <- find_intersection(siguiente_parada);
+        
+        if interseccion_siguiente_parada != nil and interseccion_siguiente_parada != self.location {
+            do compute_path graph: road_network target: interseccion_siguiente_parada;
+            
+			if length(ruta) = 1 {
+                ultima_parada <- true;
+            } else {
+                ruta <- ruta - ruta[0];
+    		}
+            
+        	if current_path = nil {
+            	siguiente_parada.bloqueada <- true;
+            } else {
+            	ruta_calculada <- true;
+            }
+        }
+    }
+    
+    action cfp_embarque {		
+        list<passenger> waiting_passengers <- passenger overlapping (interseccion_siguiente_parada.location);
+        list<passenger> contact_passengers <- [];
+        respuestas_esperadas <- 0;
+        
+        if bus_console_logs {write "[LOGS] " + self + " " + linea + " located at " + parada_actual + " has " + self.plazas_disponibles + " seats available. Its route is " + ruta;}
+    	logs << [time, string(self), linea, "Located at " + parada_actual, parada_actual.name, "Seats available " + self.plazas_disponibles, "Route " + ruta]; logs << "\n";
+    	
+        if bus_console_logs {write "[LOGS] " + self + " " + linea + " located at " + parada_actual + " where " + waiting_passengers + " are waiting";}
+    	logs << [time, string(self), linea, "Located at " + parada_actual, parada_actual.name, "Waiting passengers " + waiting_passengers]; logs << "\n";
+		                 
+        if not empty(waiting_passengers) {    
+        	// Protocolo 4: Embarque de pasajeros         	
+        	loop p over: waiting_passengers{
+				do start_conversation to: [p] protocol: 'fipa-contract-net' performative: "cfp" contents: ["¿Quieres subir?", ruta, linea, self];
+				contact_passengers << p;
+        	}
+        	
+        	respuestas_esperadas <- length(contact_passengers);
+        } else {
+        	do add_belief(embarque_completo);
+        }
+    }
+    
+    action reanudar_ruta (string aux) {
+    	if aux = "desocupar"{
+	    	parada_actual.ocupada <- false;
+    		if bus_console_logs {write "[LOGS] " + self + " " + linea + " unlock " + parada_actual + " " + parada_actual.name + ". Check(false): " +  parada_actual.ocupada;}
+			do remove_intention(get_predicate(get_current_intention()), true);
+    	} 
+        
+        if ultima_parada {
+        	if bus_console_logs {write "[LOGS] " + self + " " + linea + " has reached its last stop " + parada_actual + " " + parada_actual.name;}
+			hora_fin <- time;
+            do add_belief(ruta_finalizada);
+        } else {
+            ruta_calculada <- false;	
+        }
+    }
+	
+    intersection find_intersection (bus_stop parada) {
+        return first(intersection where (distance_to(each.location, parada.shape.location) = 0));
+    }
+        
+	string to_military_time(float h) {
+	    int hours <- (h / 3600) mod 24; int minutes <- int((h mod 3600) / 60); int seconds <- int(h mod 60);
+
+	    string str_hours <- (hours < 10) ? "0" + hours : "" + hours;
+	    string str_minutes <- (minutes < 10) ? "0" + minutes : "" + minutes;
+	    string str_seconds <- (seconds < 10) ? "0" + seconds : "" + seconds;
+	    
+	    return str_hours + ":" + str_minutes + ":" + str_seconds;
+	}
+    
+	// ------------------------------------------------ PROTOCOLOS DE COMUNICACIÓN FIPA ----------------------------------------------------	
+	
+	action registrar_llegada {
+		// Protocolo 8: Registro frecuencia del servicio
+      	do start_conversation to: [parada_actual] protocol: "no-protocol" performative: "inform" contents: ["Registro servicio", linea, to_military_time(time)];
+	} 
+	
+	reflex receive_propose when: !empty(proposes) {
+		
+		loop p over: proposes {
+			list content <- list(p.contents);
+			if content[0] = "Quiero embarcar" {
+				// Protocolo 4: Embarque de pasajeros
+				respuestas_esperadas <- respuestas_esperadas - 1;
+				
+				if plazas_disponibles > 0 {
+					plazas_disponibles <- plazas_disponibles - 1;
+	    			passengers << p.sender;
+	    			
+	                if bus_console_logs {write "[LOGS] " + self + " " + linea + " located at " + parada_actual + parada_actual.name + " receives " + p.sender + " route " + content[1];}
+	                logs << [time, string(self), linea, "Located at " + parada_actual, parada_actual.name, "Receives " + p.sender, "Destination " + content[1], "Route " + ruta]; logs << "\n";
+	    			
+	    			do accept_proposal message: p contents: p.contents;
+				} else {
+					do reject_proposal message: p contents: p.contents;
+				}
+				
+				if respuestas_esperadas = 0 {
+					do add_belief(embarque_completo);
+				}
+			}
+		}
+	}
+	
+	reflex receive_refuses when: !empty(refuses) {
+		message rechazos <- refuses[0];
+		list content <- list(rechazos.contents);
+		
+		if content[0] = "No quiero embarcar" {
+			// Protocolo 4: Embarque de pasajeros
+			respuestas_esperadas <- respuestas_esperadas - 1;
+			
+			if respuestas_esperadas = 0 {
+				do add_belief(embarque_completo);
+			}
+		}
+	}
+
+	reflex receive_inform when: !empty(informs) {
+		message info <- informs[0];	
+		do end_conversation message: info contents: [];
+	}
+	
+   	// -------------------------------------------------------------- ASPECTO --------------------------------------------------------------
 	aspect base {
        if !has_belief(ruta_finalizada) {
-			draw image("/Users/felipe/PycharmProjects/GeoJsonMapGenerator/images/autobus.png") size: {14, 42} rotate: heading + 90;
+			draw image("images/autobus.png") size: {14, 42} rotate: heading + 90;
     	}
     }
 }
+
 
 // -------------------------------------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------- PASAJERO --------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------------------------
 species passenger skills: [fipa] control: simple_bdi {
-    float tiempo_espera <- 0.0#s;
-    float tiempo_viaje <- 0.0#s;
-    float tiempo_transbordo <- 0.0#s;
+    // ------------------------------------------------------------ CREENCIAS --------------------------------------------------------------
+    predicate destino_asignado;
+    predicate en_bus <- new_predicate("en_bus");
+    predicate esperando_bus <- new_predicate("esperando_bus");
+	predicate bus_disponible <- new_predicate("bus_disponible");
+	predicate bus_seleccionado <- new_predicate("bus_seleccionado");		
+	predicate destino_alcanzado <- new_predicate("destino_alcanzado");	
+	predicate esperando_transbordo <- new_predicate("esperando_transbordo");
+
+    string hora_inicio; // Indica en la que el pasajero se ha generado.
+    
+    bus bus_actual; // Identificador del bus en el que el pasajero se encuentra.
+    
+    bus_stop parada_inicial; // Indica la parada de autobús en la que se ha generado al pasajero.
+    bus_stop parada_actual; // Indica la parada de autobús en la que se encuentra el pasajero.
+    bus_stop ultimo_destino; // Almacena el ultimo destino de un pasajero.
+    list<bus_stop> destino; // Listado con el destino del pasajero, en caso de tener que hacer transbordo se almacenará más de un destino.
+    
+    list<string> lineas_directas; // Listado de lineas validas para alcanzar el siguiente destino.
+    
+    float tiempo_espera <- 0.0#s; 
+    float tiempo_viaje <- 0.0#s; 
+    float tiempo_transbordo <- 0.0#s; 
     float tiempo_total <- 0.0#s;
     
-    string hora_inicio;
-    
-    bus ultimo_bus;
-    bus_stop parada_inicial;
-    bus_stop parada_actual;
-    bus_stop aux_destino;
-    list<bus_stop> destino; // Destino del pasajero
-    list auxcon; // ?
-    string linea;
-    
-    
-    bool notificado_parada <- false;
-    
+    // -------------------------------------------------------------- DESEOS ---------------------------------------------------------------
+    predicate llegada_parada <- new_predicate("llegada_parada");
+    predicate embarcar <- new_predicate("embarcar");
+	
+    // --------------------------------------------------------- INICIALIZACIÓN ------------------------------------------------------------
     init{
-    	logs_passengers_generation << [string(self), hora_inicio, parada_inicial.name, parada_inicial get "ref", destino[0].name, destino[0] get "ref"] + "\n";
-    	aux_destino <- destino[0];
-    	do add_belief(pasajero_esperando);
+    	logs_passengers_generation << [string(self), hora_inicio,parada_inicial, parada_inicial.name, parada_inicial get "ref", destino[0], destino[0].name, destino[0] get "ref"] + "\n";
+    	ultimo_destino <- destino[0];
+    	parada_actual <- parada_inicial;
+    	
+        destino_asignado <- new_predicate("destino_asignado", ["destino"::destino[0]]);
+        do add_belief(destino_asignado);
+    	
+        do calculate_valid_direct_lines;
+    	do add_belief(esperando_bus);
     }
     
-    reflex tiempo_espera when: has_belief(pasajero_esperando){
+	// -------------------------------------------------------------- REGLAS ---------------------------------------------------------------
+    // Regla 1: Cuando estoy esperando bus y no he notificado a la parada mi llegada
+    rule belief: esperando_bus when: not has_belief(en_bus) new_desire: llegada_parada;
+    
+    // Regla 2: Cuando encuentro un bus que me sirve
+    rule beliefs: [bus_disponible, bus_seleccionado, en_bus] new_desire: embarcar;
+	
+	// ------------------------------------------------------ INTENCIONES / PLANES ---------------------------------------------------------
+	plan llegada_parada intention: llegada_parada {
+        parada_actual <- first(bus_stop where (each.location = self.location));
+        do remove_desire(llegada_parada);
+        do remove_intention(llegada_parada);
+    }
+    
+    plan embarcar intention: embarcar {
+		do remove_belief(bus_disponible);
+		do remove_belief(bus_seleccionado);
+		
+        do remove_desire(embarcar);
+        do remove_intention(embarcar);
+    }
+	
+	// ------------------------------------------------------------- ACCIONES --------------------------------------------------------------
+    reflex tiempo_espera when: has_belief(esperando_bus){
     	tiempo_espera <- tiempo_espera + step;
     }
     
-    reflex tiempo_transporte when: has_belief(aborda) {
+    reflex tiempo_transporte when: has_belief(en_bus) {
     	tiempo_viaje <- tiempo_viaje + step;
     }
     
-    reflex tiempo_transbordo when: has_belief(transbordo){
+    reflex tiempo_transbordo when: has_belief(esperando_transbordo){
     	tiempo_transbordo <- tiempo_transbordo + step;
     }
     
     reflex tiempo_total when: has_belief(destino_alcanzado) {
     	tiempo_total <- tiempo_espera + tiempo_viaje;
     }
-   
-    // ------------------------------------------------------ FUNCIONES AUXILIARES ---------------------------------------------------------
-	bool calculate_transfer {
-		list<string> lineas_validas;
-
+    
+	action calculate_valid_direct_lines {
 	    loop l over: lineas_group.keys {		
-	        if (destino[0] in lineas_group[l]) and (linea != l) {
-	            lineas_validas << l;
+	        if (destino[0] in lineas_group[l]) and (parada_actual in lineas_group[l]) {
+	        	
+	        	int pos_actual <- lineas_group[l] index_of parada_actual;
+            	int pos_destino <- lineas_group[l] index_of destino[0];
+            	
+	        	if pos_destino > pos_actual {
+	                lineas_directas << l;
+            	}
 	        }
 	    }
-	    
-	    if not empty(lineas_validas){
-		    list<string> paradas_comunes; list<bus_stop> ruta_linea; list<string> refs_rutalinea;
-	    	list<string> refs_auxcon <- auxcon collect (each get 'ref');
-		    
-		    loop linea over: lineas_validas {
-		    	ruta_linea <- lineas_group[linea];
-		    	refs_rutalinea <- ruta_linea collect (each get 'ref');
-		    	paradas_comunes <-  paradas_comunes + refs_auxcon where (refs_rutalinea contains each);
-		    }
-	 
-		   	if not empty(paradas_comunes) {
-			    if comentarios {
-			    	write lineas_validas;
-					write "ref" + refs_auxcon;
-					write "linea" + refs_rutalinea;
-					write "Comunes " + paradas_comunes;	
-			    }
-		   		
-				string primer_coincidencia <- first(paradas_comunes where (refs_auxcon contains each));
-				destino <- [first(bus_stop where (each get "ref" = primer_coincidencia))] + destino;
-				
-				return true;
-		   	}
-	    }
-	    return false;
-	}
-    
-    // --------------------------------------------------------- PROTOCOLOS FIPA -----------------------------------------------------------
-    reflex inform_bus_stop when: !notificado_parada {
-    	if !has_belief(aborda) {
-			parada_actual <- first(bus_stop where (each.location = self.location));
-			
-			if parada_actual != nil {
-				parada_actual.destino_pasajeros[destino[0]] <- parada_actual.destino_pasajeros[destino[0]] + 1;
-				do start_conversation to: [parada_actual] protocol: "no-protocol" performative: "inform" contents: ["Llego a la parada con destino", destino[0]];
-		          	
-				notificado_parada <- true;
-			}
-    	} else {
-			parada_actual.destino_pasajeros[aux_destino] <- parada_actual.destino_pasajeros[aux_destino] - 1;
-			aux_destino <- destino[0];
-			do start_conversation to: [parada_actual] protocol: "no-protocol" performative: "inform" contents: ["Abandono parada"];
-			
-			notificado_parada <- true;
-    	}
-	}
+	}	
 	
-	reflex receive_propose_messages when: !empty(proposes) {
-    	message propose <- proposes[0];
+    // ------------------------------------------------ PROTOCOLOS DE COMUNICACIÓN FIPA ----------------------------------------------------
+	reflex receive_cfps when: !empty(cfps) {
+		message propose <- cfps[0];
 		list content <- list(propose.contents);
-		bool puede_subir <- false;
+		
+		if content[0] = "¿Quieres subir?" {
+			// Protocolo 4: Embarque de pasajeros
+			do add_belief(bus_disponible);
 
-		if content[0] = "subir" {
 			if destino[0] in content[1]{
-				puede_subir <- true;
-			} else {
-				auxcon <- content[1];
-				linea <- content[2];
-				puede_subir <- calculate_transfer();
+				do add_belief(bus_seleccionado);
+				if passengers_console_logs {write "[LOGS] " + self + " located at " + parada_actual + parada_actual.name + " whose destination is " + destino[0] + " finds an available direct bus " + propose.sender +  " route " + content[1];}
+				logs << [time, string(self), "Located at " + parada_actual, parada_actual.name, "Destination " + destino[0], "Find available direct bus " + propose.sender, "Route " + content[1]]; logs << "\n";
+    			
+			} else if bus_actual != content[3] {
+				
+				list<map<string, bus_stop>> valid_transfers <- [];
+				 
+			    // 1. Encontrar todas las líneas que pasan por el destino
+			    list<string> lines_to_dest <- lineas_group.keys where (destino[0] in lineas_group[each]);
+			    
+			    // 2. Buscar combinaciones válidas
+			    int pos_current_in_line1 <- 1;
+		        
+		        loop line2 over: lines_to_dest where (each != content[2]) {
+		            int pos_dest_in_line2 <- last_index_of(lineas_group[line2], destino[0]);
+     
+		            // Buscar paradas comunes donde se pueda hacer transbordo
+		            loop stop over: list<bus_stop>(content[1]) {
+		            	if stop in lineas_group[line2] {
+		            		int pos_transfer_in_line1 <- list<bus_stop>(content[1]) index_of stop;
+			                int pos_transfer_in_line2 <- lineas_group[line2] index_of stop;
+			                
+			                // Verificar dirección correcta en ambas líneas
+			                bool valid_line1_direction <- pos_transfer_in_line1 > pos_current_in_line1;
+			                bool valid_line2_direction <- pos_dest_in_line2 > pos_transfer_in_line2;
+			                			                
+			                if (valid_line1_direction and valid_line2_direction) {
+			                    valid_transfers << [
+			                        "line1":: content[2],
+			                        "line2":: line2,
+			                        "transfer_stop":: stop,
+			                        "stops_before_transfer":: pos_transfer_in_line1 - pos_current_in_line1,
+			                        "stops_after_transfer":: pos_dest_in_line2 - pos_transfer_in_line2,
+			                        "total_stops":: (pos_transfer_in_line1 - pos_current_in_line1) + (pos_dest_in_line2 - pos_transfer_in_line2)
+			                    ];
+			                }
+		            	}
+		            }
+		            
+				}
+			    
+			    if (not empty(valid_transfers)) {
+				    // Ordenar por menor número total de paradas
+			    	valid_transfers <- valid_transfers sort_by (each["total_stops"]);
+			        destino <- [bus_stop(valid_transfers[0]["transfer_stop"])] + destino;
+			        
+			        if passengers_console_logs {write "[LOGS] " + self + " located at " + parada_actual + parada_actual.name + " whose destination is " + destino[0] + " itinarary " + destino + " finds an available bus for transfer " + propose.sender + " route " + content[1];}
+					logs << [time, string(self), "Located at " + parada_actual, parada_actual.name, "Destination " + destino[0], "Itinerary " + destino, "Find available bus for transfer " + propose.sender, "Route " + content[1]]; logs << "\n";
+			
+					do add_belief(bus_seleccionado);
+			    } else {
+			        if passengers_console_logs {write "[LOGS] " + self + " located at " + parada_actual + parada_actual.name + " doesn't find any possible transfer option";}
+				}									
 			}
-
-			if puede_subir and not(has_belief(aborda)) and (propose.sender != ultimo_bus) {
-				//write "[PASAJERO-SUBE] " + self + " ubicado en " + inicio + "/" + inicio.name + " SUBE al bus " + propose.sender + " ruta: " + content[2] + " su destino es " + destino[0] + "/" + destino[0].name;
-				
-				self.location <- (0,0);
-				do accept_proposal message: propose contents: propose.contents;
-            	do remove_belief(pasajero_esperando);
-            	do add_belief(new_predicate("aborda", ["bus"::propose.sender]));
-            	ultimo_bus <- propose.sender;
-			}else{
-				//write "[PASAJERO-NO-SUBE] " + self + " ubicado en " + inicio + "/" + inicio.name  + " NO sube al bus " + propose.sender + " ruta " + content[2] + " su destino es " + destino[0] + "/" + destino[0].name;
-				
-				do reject_proposal message: propose contents: propose.contents;
+			
+			if has_belief(bus_seleccionado) and (propose.sender != bus_actual) and not has_belief(en_bus) {
+				if passengers_console_logs {write "[LOGS] " + self + " located at " + parada_actual + parada_actual.name + " whose destination is " + destino[0] + " propose to board " + propose.sender +  " route " + content[1];}
+				logs << [time, string(self), "Located at " + parada_actual, parada_actual.name, "Propose to board " + propose.sender, "Destination " + destino[0], "Route " + content[1]]; logs << "\n";
+				do propose message: propose contents: ["Quiero embarcar", destino];
+			} else {
+				if passengers_console_logs {write "[LOGS] " + self + " located at " + parada_actual + parada_actual.name + " whose destination is " + destino[0] + " refuse to board " + propose.sender +  " route " + content[1];}
+				logs << [time, string(self), "Located at " + parada_actual, parada_actual.name, "Refuse to board " + propose.sender]; logs << "\n";
+				do refuse message: propose contents: ["No quiero embarcar"];
 			}
 		}
 	}
 	
+	reflex receive_accept when: !empty(accept_proposals) {
+        // Protocolo 4: Embarque de pasajeros
+        message propuesta_aceptada <- accept_proposals[0];
+		list content <- list(propuesta_aceptada.contents);
+		
+		bus_actual <- propuesta_aceptada.sender;
+		
+		self.location <- (0,0);	
+		
+    	do remove_belief(esperando_bus);
+		do remove_belief(esperando_transbordo);
+
+    	do add_belief(en_bus);
+	}
+	
+	reflex receive_reject when: !empty(reject_proposals) {
+        // Protocolo 4: Embarque de pasajeros
+        loop r over: reject_proposals {
+	    	do remove_belief(bus_disponible);
+			do remove_belief(bus_seleccionado);
+		}
+	}
+	
 	reflex receive_inform when: !empty(informs) {
-		message info <- informs[0];	
+		message info <- informs[0];
+		list content <- list(info.contents);
+
+		if content[0] = "Transbordo alcanzado" {
+			// Protocolo 3: Desembarque de pasajeros
+			self.location <- content[2];
+			destino <- destino - destino[0];      
+		 	do calculate_valid_direct_lines;  		
+		 	
+    		do remove_belief(en_bus);
+    		do remove_belief(bus_seleccionado);			
+
+	 		do add_belief(esperando_bus);
+	    	do add_belief(esperando_transbordo);
+	 	
+	 	} else if content[0] = "Destino alcanzado" {
+	 		// Protocolo 3: Desembarque de pasajeros
+        	do remove_belief(en_bus);
+	 		do add_belief(destino_alcanzado);	 		
+		}
+		
 		do end_conversation message: info contents: [];
 	}
-    
+	
+	// -------------------------------------------------------------- ASPECTO --------------------------------------------------------------
     aspect base {
-    	if has_belief(pasajero_esperando) {
-    		 draw circle(2) color: #red; // Representación visual del pasajero
+    	if has_belief(esperando_bus) {
+    		 draw circle(2) color: #orange; // Representación visual del pasajero
     	}
     }
 }
 
-experiment simulacion type: batch {
+
+experiment simulador type: gui {
     output synchronized: false {
         display map type: 3d background: rgb(242, 243, 244) {
 		    species road aspect: base;
@@ -833,3 +1130,5 @@ experiment simulacion type: batch {
         }
     }
 }
+
+experiment sin_interfaz type: gui {}

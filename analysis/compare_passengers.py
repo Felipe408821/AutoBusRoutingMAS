@@ -1,395 +1,313 @@
+import os
 import glob
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from io import StringIO
-import numpy as np
 from itertools import combinations
+from typing import Dict, Tuple, Optional, List
 
-# Configurar estilo de gráficos
+# Columnas de tiempo para análisis
+COLUMNAS_TIEMPO = ['tiempo_espera', 'tiempo_viaje', 'tiempo_transbordo', 'tiempo_total']
+# Columnas de métricas para análisis
+COLUMNAS_METRICAS = ['tiempo_espera_promedio', 'tiempo_viaje_promedio', 'tiempo_total_promedio',
+                    'tiempo_total_maximo', 'tiempo_total_minimo', 'tiempo_total_mediana',
+                    'desviacion_tiempo_total', 'desviacion_tiempo_total_promedio']
+RUTA_PASAJEROS = "analysis_results/passengers/"
+
+# Configuración de estilos para gráficos
 sns.set_theme(style="whitegrid")
 plt.rcParams['figure.figsize'] = (12, 6)
 
 
-def parse_custom_csv(file_path):
+def analizar_csv_personalizado(ruta_archivo: str) -> pd.DataFrame:
+    """Analiza un archivo CSV personalizado con resultados de pasajeros y lo convierte en un DataFrame."""
     try:
-        with open(file_path, 'r') as f:
-            lines = f.readlines()
+        with open(ruta_archivo, 'r') as archivo:
+            lineas = [linea for linea in archivo if linea.strip().startswith("'],['")]
 
-        # Procesar las líneas para obtener datos limpios
-        clean_lines = []
-        for line in lines:
-            if line.strip().startswith("'],['"):
-                # Limpiar la línea
-                clean_line = (line.replace("'],['", "")
-                              .replace("'", "")
-                              .replace(" ", "")
-                              .replace("','", "")
-                              .replace("'", "")
-                              .replace("\n", "").strip())
-                clean_lines.append(clean_line)
+        if not lineas:
+            print(f"Advertencia: No se encontraron datos de pasajeros en {ruta_archivo}")
+            return pd.DataFrame()
+
+        # Procesar líneas eficientemente
+        lineas_limpias = []
+        for linea in lineas:
+            linea_limpia = (linea.replace("'],['", "")
+                          .replace("'", "")
+                          .replace(" ", "")
+                          .replace("','", "")
+                          .replace("\n", "").strip())
+            lineas_limpias.append(linea_limpia)
 
         # Crear DataFrame desde las líneas limpias
-        if not clean_lines:
-            print(f"Advertencia: No se encontraron datos de pasajeros en {file_path}")
+        df = pd.read_csv(StringIO("\n".join(lineas_limpias)), header=None)
+        df.drop(columns=[5], inplace=True, errors='ignore')
+
+        if len(df.columns) < 4:
+            print(f"Advertencia: Columnas insuficientes en {ruta_archivo}")
             return pd.DataFrame()
 
-        # Crear un CSV temporal en memoria
-        csv_data = StringIO("\n".join(clean_lines))
-        df = pd.read_csv(csv_data, header=None)
-        del df[5]
+        df.columns = ['pasajero', 'tiempo_espera', 'tiempo_viaje', 'tiempo_transbordo', 'tiempo_total']
 
-        # Asignar nombres de columnas
-        if len(df.columns) >= 4:
-            df.columns = ['pasajero', 'tiempo_espera', 'tiempo_viaje', 'tiempo_transbordo', 'tiempo_total']
-        else:
-            print(f"Advertencia: Número insuficiente de columnas en {file_path}")
-            return pd.DataFrame()
-
-        # Convertir columnas numéricas
-        numeric_cols = ['tiempo_espera', 'tiempo_viaje', 'tiempo_transbordo', 'tiempo_total']
-        for col in numeric_cols:
+        # Convertir columnas numéricas eficientemente
+        for col in COLUMNAS_TIEMPO:
             if col in df.columns:
                 df[col] = pd.to_numeric(df[col], errors='coerce')
 
         return df
 
     except Exception as e:
-        print(f"Error al procesar {file_path}: {str(e)}")
+        print(f"Error procesando {ruta_archivo}: {str(e)}")
         return pd.DataFrame()
 
 
-def calculate_metrics(df, label):
-    """Calcula métricas para un DataFrame individual"""
+def calcular_metricas(df: pd.DataFrame, etiqueta: str) -> Dict:
+    """Calcula métricas para un DataFrame individual."""
     if df.empty:
         return {
-            'label': label,
-            'total_passengers': 0,
-            'arrived_passengers': 0,
-            'arrived_percentage': 0,
-            'avg_wait_time': None,
-            'avg_travel_time': None,
-            'avg_transfer_time': None,
-            'avg_total_time': None,
-            'max_total_time': None,
-            'min_total_time': None,
-            'std_total_time': None,
-            'median_total_time': None
+            'etiqueta': etiqueta,
+            'total_pasajeros': 0,
+            'pasajeros_llegados': 0,
+            'porcentaje_llegados': 0,
+            **{col: None for col in COLUMNAS_METRICAS}
         }
 
-    # Filtrar pasajeros que llegaron a destino
-    arrived = df[df['tiempo_total'] > 0]
+    llegados = df[df['tiempo_total'] > 0]
+    if llegados.empty:
+        metricas = {
+            'etiqueta': etiqueta,
+            'total_pasajeros': len(df),
+            'pasajeros_llegados': 0,
+            'porcentaje_llegados': 0,
+            **{col: None for col in COLUMNAS_METRICAS}
+        }
+    else:
+        metricas = {
+            'etiqueta': etiqueta,
+            'total_pasajeros': len(df),
+            'pasajeros_llegados': len(llegados),
+            'porcentaje_llegados': (len(llegados) / len(df)) * 100,
+            'tiempo_espera_promedio': llegados['tiempo_espera'].mean(),
+            'tiempo_viaje_promedio': llegados['tiempo_viaje'].mean(),
+            'tiempo_transbordo_promedio': llegados['tiempo_transbordo'].mean(),
+            'tiempo_total_promedio': llegados['tiempo_total'].mean(),
+            'tiempo_total_maximo': llegados['tiempo_total'].max(),
+            'tiempo_total_minimo': llegados['tiempo_total'].min(),
+            'desviacion_tiempo_total': llegados['tiempo_total'].std(),
+            'tiempo_total_mediana': llegados['tiempo_total'].median()
+        }
+    return metricas
 
-    metrics = {
-        'label': label,
-        'total_passengers': len(df),
-        'arrived_passengers': len(arrived),
-        'arrived_percentage': (len(arrived) / len(df)) * 100 if len(df) > 0 else 0,
-        'avg_wait_time': arrived['tiempo_espera'].mean() if not arrived.empty else None,
-        'avg_travel_time': arrived['tiempo_viaje'].mean() if not arrived.empty else None,
-        'avg_transfer_time': arrived['tiempo_transbordo'].mean() if not arrived.empty else None,
-        'avg_total_time': arrived['tiempo_total'].mean() if not arrived.empty else None,
-        'max_total_time': arrived['tiempo_total'].max() if not arrived.empty else None,
-        'min_total_time': arrived['tiempo_total'].min() if not arrived.empty else None,
-        'std_total_time': arrived['tiempo_total'].std() if not arrived.empty else None,
-        'median_total_time': arrived['tiempo_total'].median() if not arrived.empty else None
+
+def procesar_archivos_modelo(patron_archivos: str, nombre_modelo: str) -> Tuple[Optional[Dict], Optional[pd.DataFrame]]:
+    """Procesa todos los archivos de un modelo y calcula métricas agregadas."""
+    todos_archivos = glob.glob(patron_archivos)
+    if not todos_archivos:
+        print(f"Advertencia: No se encontraron archivos para el patrón {patron_archivos}")
+        return None, None
+
+    todas_metricas = [calcular_metricas(analizar_csv_personalizado(archivo), f"{nombre_modelo} - Ejecución") for archivo in todos_archivos]
+    df_metricas = pd.DataFrame(todas_metricas)
+
+    if df_metricas.empty:
+        return None, None
+
+    metricas_agregadas = {
+        'etiqueta': nombre_modelo,
+        'total_pasajeros': df_metricas['total_pasajeros'].mean(),
+        'pasajeros_llegados': df_metricas['pasajeros_llegados'].mean(),
+        'porcentaje_llegados': df_metricas['porcentaje_llegados'].mean(),
+        'tiempo_espera_promedio': df_metricas['tiempo_espera_promedio'].mean(),
+        'tiempo_viaje_promedio': df_metricas['tiempo_viaje_promedio'].mean(),
+        'tiempo_transbordo_promedio': df_metricas['tiempo_transbordo_promedio'].mean(),
+        'tiempo_total_promedio': df_metricas['tiempo_total_promedio'].mean(),
+        'tiempo_total_maximo': df_metricas['tiempo_total_maximo'].max(),
+        'tiempo_total_minimo': df_metricas['tiempo_total_minimo'].min(),
+        'desviacion_tiempo_total': df_metricas['desviacion_tiempo_total'].mean(),
+        'tiempo_total_mediana': df_metricas['tiempo_total_mediana'].mean(),
+        'num_ejecuciones': len(todos_archivos),
+        'desviacion_porcentaje_llegados': df_metricas['porcentaje_llegados'].std(),
+        'desviacion_tiempo_total_promedio': df_metricas['tiempo_total_promedio'].std()
     }
-    return metrics
+
+    return metricas_agregadas, df_metricas
 
 
-def process_model_files(file_pattern, model_name):
-    """Procesa todos los archivos de un modelo y calcula métricas agregadas"""
-    all_files = glob.glob(file_pattern)
-    if not all_files:
-        print(f"Advertencia: No se encontraron archivos para el patrón {file_pattern}")
-        return None
+def comparar_multiples_modelos(patrones_modelos: Dict[str, str]) -> Tuple[Optional[pd.DataFrame], Optional[Dict]]:
+    """Compara múltiples modelos dados como {nombre_modelo: patron_archivos}."""
+    resultados = [(nombre_modelo, procesar_archivos_modelo(patron, nombre_modelo))
+               for nombre_modelo, patron in patrones_modelos.items()]
 
-    # Lista para almacenar métricas de cada ejecución
-    all_metrics = []
+    resultados_validos = [(nombre, agg, detalle) for nombre, (agg, detalle) in resultados if agg is not None]
 
-    # Procesar cada archivo individualmente
-    for file in all_files:
-        df = parse_custom_csv(file)
-        metrics = calculate_metrics(df, f"{model_name} - Ejecución")
-        all_metrics.append(metrics)
-
-    # Crear DataFrame con todas las métricas
-    metrics_df = pd.DataFrame(all_metrics)
-
-    # Calcular métricas agregadas (promedio de todas las ejecuciones)
-    aggregated_metrics = {
-        'label': model_name,
-        'total_passengers': metrics_df['total_passengers'].mean(),
-        'arrived_passengers': metrics_df['arrived_passengers'].mean(),
-        'arrived_percentage': metrics_df['arrived_percentage'].mean(),
-        'avg_wait_time': metrics_df['avg_wait_time'].mean(),
-        'avg_travel_time': metrics_df['avg_travel_time'].mean(),
-        'avg_transfer_time': metrics_df['avg_transfer_time'].mean(),
-        'avg_total_time': metrics_df['avg_total_time'].mean(),
-        'max_total_time': metrics_df['max_total_time'].max(),
-        'min_total_time': metrics_df['min_total_time'].min(),
-        'std_total_time': metrics_df['std_total_time'].mean(),
-        'median_total_time': metrics_df['median_total_time'].mean(),
-        'num_executions': len(all_files),
-        'std_arrived_percentage': metrics_df['arrived_percentage'].std(),
-        'std_avg_total_time': metrics_df['avg_total_time'].std()
-    }
-
-    return aggregated_metrics, metrics_df
-
-
-def compare_multiple_models(model_patterns):
-    """
-    Compara múltiples modelos dados como un diccionario {nombre_modelo: patrón_archivo}
-    Devuelve un DataFrame con las métricas agregadas de todos los modelos
-    """
-    all_metrics = []
-    all_details = {}
-
-    for model_name, pattern in model_patterns.items():
-        agg_metrics, detail_metrics = process_model_files(pattern, model_name)
-        if agg_metrics is not None:
-            all_metrics.append(agg_metrics)
-            all_details[model_name] = detail_metrics
-
-    if not all_metrics:
+    if not resultados_validos:
         print("Advertencia: No se encontraron datos válidos para ningún modelo")
         return None, None
 
-    comparison_df = pd.DataFrame(all_metrics).set_index('label')
+    todas_metricas = [agg for _, agg, _ in resultados_validos]
+    todos_detalles = {nombre: detalle for nombre, _, detalle in resultados_validos}
 
-    return comparison_df, all_details
-
-
-def generate_pairwise_comparisons(comparison_df):
-    """
-    Genera comparaciones por pares entre todos los modelos
-    """
-    model_names = comparison_df.index.tolist()
-    all_comparisons = {}
-
-    for (model1, model2) in combinations(model_names, 2):
-        diff_df = pd.DataFrame()
-        diff_df['Diferencia'] = comparison_df.loc[model2] - comparison_df.loc[model1]
-        diff_df['% Cambio'] = (comparison_df.loc[model2] - comparison_df.loc[model1]) / comparison_df.loc[
-            model1].abs() * 100
-        all_comparisons[f"{model2} vs {model1}"] = diff_df
-
-    return all_comparisons
+    return pd.DataFrame(todas_metricas).set_index('etiqueta'), todos_detalles
 
 
-def plot_aggregated_comparison(comparison_df, title="Comparación de Modelos"):
-    """
-    Crea gráficos comparativos para múltiples modelos con tiempos en minutos
-    """
-    # Convertir segundos a minutos en las columnas relevantes
-    time_cols = ['avg_wait_time', 'avg_travel_time', 'avg_total_time',
-                 'max_total_time', 'min_total_time', 'median_total_time',
-                 'std_total_time', 'std_avg_total_time']
+def generar_comparaciones_pareadas(df_comparacion: pd.DataFrame) -> Dict[str, pd.DataFrame]:
+    """Genera comparaciones pareadas entre todos los modelos."""
+    nombres_modelos = df_comparacion.index.tolist()
+    return {
+        f"{modelo2} vs {modelo1}": pd.DataFrame({
+            'Diferencia': df_comparacion.loc[modelo2] - df_comparacion.loc[modelo1],
+            '% Cambio': (df_comparacion.loc[modelo2] - df_comparacion.loc[modelo1]) /
+                        df_comparacion.loc[modelo1].abs() * 100
+        })
+        for modelo1, modelo2 in combinations(nombres_modelos, 2)
+    }
 
-    # Crear copia para no modificar el DataFrame original
-    plot_df = comparison_df.copy()
-    plot_df[time_cols] = plot_df[time_cols] / 60
 
-    num_models = len(plot_df)
-    fig, axes = plt.subplots(3, 2, figsize=(18, 16))
-    fig.suptitle(title, fontsize=16, y=1.02)
+def _preparar_datos_graficos(df_comparacion: pd.DataFrame) -> pd.DataFrame:
+    """Prepara datos para gráficos convirtiendo columnas de tiempo a minutos."""
+    df_grafico = df_comparacion.copy()
+    df_grafico[COLUMNAS_METRICAS] = df_grafico[COLUMNAS_METRICAS] / 60
+    df_grafico['desviacion_tiempo_total_promedio_min'] = df_grafico['desviacion_tiempo_total_promedio'] / 60
+    return df_grafico
 
-    # Gráfico 1: Porcentaje de llegada
-    ax = axes[0, 0]
-    sns.barplot(data=plot_df.reset_index(), x='label', y='arrived_percentage',
-                hue='label', palette="pastel", ax=ax, legend=False)
-    ax.errorbar(x=range(num_models), y=plot_df['arrived_percentage'],
-                yerr=plot_df['std_arrived_percentage'], fmt='none', color='black', capsize=5)
-    ax.set_title("Porcentaje de Pasajeros que Llegaron")
+
+def _guardar_grafico(fig: plt.Figure, nombre_archivo: str) -> None:
+    """Función auxiliar para guardar gráficos consistentemente."""
+    fig.savefig(f'{RUTA_PASAJEROS}{nombre_archivo}', dpi=300, bbox_inches='tight')
+    plt.close(fig)
+
+
+def graficar_metrica_individual(df_grafico: pd.DataFrame, metrica: str, etiqueta_y: str,
+                       paleta: List[str], nombre_archivo: str,
+                       barra_error: Optional[str] = None) -> None:
+    """Función genérica para graficar una métrica individual."""
+    fig, ax = plt.subplots(figsize=(12, 6))
+    sns.barplot(data=df_grafico.reset_index(), x='etiqueta', y=metrica,
+                hue='etiqueta', palette=paleta, ax=ax, legend=False)
+
+    if barra_error:
+        ax.errorbar(x=range(len(df_grafico)), y=df_grafico[metrica],
+                    yerr=df_grafico[barra_error], fmt='none', color='red', capsize=5)
+
+    ax.set_ylabel(etiqueta_y)
+    ax.set_xlabel("")
+    ax.tick_params(axis='x', rotation=45)
+    _guardar_grafico(fig, nombre_archivo)
+
+
+def graficar_metricas_agrupadas(df_grafico: pd.DataFrame, metricas: List[str],
+                         paleta: Dict[str, str], etiqueta_y: str,
+                         etiquetas_leyenda: List[str], nombre_archivo: str) -> None:
+    """Grafica métricas agrupadas con leyenda personalizada."""
+    fig, ax = plt.subplots(figsize=(12, 6))
+    datos_derretidos = df_grafico.reset_index()[['etiqueta'] + metricas].melt(id_vars='etiqueta')
+    sns.barplot(data=datos_derretidos, x='etiqueta', y='value', hue='variable',
+                palette=paleta, ax=ax)
+
+    ax.set_ylabel(etiqueta_y)
+    ax.set_xlabel("")
+    ax.tick_params(axis='x', rotation=45)
+
+    # Leyenda personalizada
+    handles, _ = ax.get_legend_handles_labels()
+    ax.legend(handles=handles, labels=etiquetas_leyenda, loc='upper left')
+    _guardar_grafico(fig, nombre_archivo)
+
+
+def graficar_y_guardar_imagenes0(df_comparacion: pd.DataFrame) -> None:
+    """Crea gráficos comparativos para múltiples modelos con tiempos en minutos."""
+    df_grafico = _preparar_datos_graficos(df_comparacion)
+    paleta = sns.blend_palette(["#171796", "#e6e8ec"], n_colors=2)
+    paleta1 = sns.blend_palette(["#FF7700", "#CC3333"], n_colors=2)
+
+    # Gráfico de porcentaje de llegada
+    graficar_metrica_individual(df_grafico, 'porcentaje_llegados', 'Tasa de éxito',
+                       paleta, 'tasa_exito.png', 'desviacion_porcentaje_llegados')
+
+    # Gráfico de tiempo total promedio
+    graficar_metrica_individual(df_grafico, 'tiempo_total_promedio', 'Minutos',
+                       paleta, 'tiempos_promedio.png', 'desviacion_tiempo_total_promedio')
+
+    # Gráfico de tiempo de espera vs tiempo de viaje
+    graficar_metricas_agrupadas(df_grafico, ['tiempo_espera_promedio', 'tiempo_viaje_promedio'],
+                         paleta1, 'Minutos',
+                         ['Tiempo Espera', 'Tiempo Viaje'], 'esperavsviaje.png')
+
+    # Gráfico de conteo de pasajeros
+    graficar_metricas_agrupadas(df_grafico, ['total_pasajeros', 'pasajeros_llegados'],
+                         {'total_pasajeros': '#171796', 'pasajeros_llegados': '#53cf5b'},
+                         'Pasajeros', ['Total', 'Llegados'], 'procesados.png')
+
+
+def graficar_y_guardar_imagenes1(detalles_modelos: Dict[str, pd.DataFrame],
+                      nombres_modelos: List[str]) -> None:
+    """Crea gráficos de comparación detallados."""
+    # Obtener datos de la primera ejecución para cada modelo
+    dfs_primer_ejecucion = {}
+    for nombre in nombres_modelos:
+        primer_archivo = glob.glob(patrones_modelos[nombre])[0]
+        df = analizar_csv_personalizado(primer_archivo)
+        df[COLUMNAS_TIEMPO] = df[COLUMNAS_TIEMPO] / 60  # Convertir a minutos
+        dfs_primer_ejecucion[nombre] = df
+
+    paleta = sns.blend_palette(["#171796", "#e6e8ec"], n_colors=2)
+
+    # Gráfico de caja de tiempos totales
+    fig, ax = plt.subplots(figsize=(12, 6))
+    datos_grafico = pd.concat([df['tiempo_total'].rename(nombre)
+                       for nombre, df in dfs_primer_ejecucion.items()], axis=1)
+    sns.boxplot(data=datos_grafico, palette=paleta, ax=ax)
+    ax.set_ylabel("Minutos")
+    ax.set_xlabel("")
+    ax.tick_params(axis='x', rotation=45)
+    _guardar_grafico(fig, 'tiempo_box_plot.png')
+
+    # Gráfico de porcentaje de transbordo
+    fig, ax = plt.subplots(figsize=(12, 6))
+    datos_transbordo = pd.DataFrame({
+        'Modelo': list(dfs_primer_ejecucion.keys()),
+        'Porcentaje': [(df['tiempo_transbordo'] > 0).mean() * 100
+                   for df in dfs_primer_ejecucion.values()]
+    })
+    sns.barplot(x='Modelo', y='Porcentaje', data=datos_transbordo,
+            palette=paleta, ax=ax)
     ax.set_ylim(0, 100)
     ax.tick_params(axis='x', rotation=45)
-
-    # Gráfico 2: Tiempo total promedio (ahora en minutos)
-    ax = axes[0, 1]
-    sns.barplot(data=plot_df.reset_index(), x='label', y='avg_total_time',
-                hue='label', palette="pastel", ax=ax, legend=False)
-    ax.errorbar(x=range(num_models), y=plot_df['avg_total_time'],
-                yerr=plot_df['std_avg_total_time'], fmt='none', color='black', capsize=5)
-    ax.set_title("Tiempo Total Promedio (minutos)")
-    ax.tick_params(axis='x', rotation=45)
-
-    # Gráfico 3: Tiempos de espera vs viaje (en minutos)
-    ax = axes[1, 0]
-    plot_df.reset_index()[['label', 'avg_wait_time', 'avg_travel_time']].melt(
-        id_vars='label').pipe(
-        (sns.barplot, 'data'), x='label', y='value', hue='variable', ax=ax)
-    ax.set_title("Descomposición de Tiempos (Espera vs Viaje)")
-    ax.set_ylabel("Minutos")
-    ax.legend(title="Tipo de Tiempo")
-    ax.tick_params(axis='x', rotation=45)
-
-    # Gráfico 4: Variabilidad entre ejecuciones (convertir std a minutos)
-    ax = axes[1, 1]
-    plot_df['std_avg_total_time_min'] = plot_df['std_avg_total_time'] / 60
-    plot_df['std_arrived_percentage'] = plot_df['std_arrived_percentage']
-    plot_df.reset_index()[['label', 'std_arrived_percentage', 'std_avg_total_time_min']].melt(
-        id_vars='label').pipe(
-        (sns.barplot, 'data'), x='label', y='value', hue='variable', ax=ax)
-    ax.set_title("Variabilidad entre Ejecuciones")
-    ax.legend(title="Métrica")
-    ax.set_ylabel("Valor")
-    ax.tick_params(axis='x', rotation=45)
-
-    # Gráfico 5: Tiempos extremos (en minutos)
-    ax = axes[2, 0]
-    plot_df.reset_index()[['label', 'min_total_time', 'median_total_time', 'max_total_time']].melt(
-        id_vars='label').pipe(
-        (sns.barplot, 'data'), x='label', y='value', hue='variable', ax=ax)
-    ax.set_title("Tiempos Extremos y Mediana")
-    ax.set_ylabel("Minutos")
-    ax.legend(title="Métrica")
-    ax.tick_params(axis='x', rotation=45)
-
-    # Gráfico 6: Pasajeros procesados
-    ax = axes[2, 1]
-    plot_df.reset_index()[['label', 'total_passengers', 'arrived_passengers']].melt(
-        id_vars='label').pipe(
-        (sns.barplot, 'data'), x='label', y='value', hue='variable', ax=ax)
-    ax.set_title("Pasajeros Totales vs Pasajeros que Llegaron")
-    ax.legend(title="Tipo")
-    ax.tick_params(axis='x', rotation=45)
-
-    plt.tight_layout()
-    plt.savefig('results/passengers/multi_model_comparison.png', dpi=300, bbox_inches='tight')
-    plt.close()
-
-    return fig
-
-
-def plot_detailed_comparison(model_details, model_names, title="Comparación Detallada"):
-    """
-    Crea gráficos detallados con tiempos en minutos
-    """
-    # Obtener datos de la primera ejecución para cada modelo
-    first_exec_dfs = {}
-    for name in model_names:
-        pattern = model_patterns[name]
-        first_file = glob.glob(pattern)[0]
-        df = parse_custom_csv(first_file)
-        # Convertir a minutos
-        time_cols = ['tiempo_espera', 'tiempo_viaje', 'tiempo_transbordo', 'tiempo_total']
-        df[time_cols] = df[time_cols] / 60
-        first_exec_dfs[name] = df
-
-    # Configurar figura
-    fig = plt.figure(figsize=(20, 16))
-    plt.suptitle(title, fontsize=16, y=1.02)
-
-    # Gráfico 1: Distribución tiempos totales (minutos)
-    ax1 = plt.subplot2grid((3, 3), (0, 0), colspan=1)
-    for name, df in first_exec_dfs.items():
-        sns.kdeplot(df['tiempo_total'], label=name, ax=ax1, fill=True, alpha=0.3)
-    ax1.set_title("Distribución Tiempos Totales")
-    ax1.set_xlabel("Minutos")
-    ax1.legend()
-
-    # Gráfico 2: Boxplot tiempos por modelo (minutos)
-    ax2 = plt.subplot2grid((3, 3), (0, 1), colspan=1)
-    plot_data = pd.concat([df['tiempo_total'].rename(name) for name, df in first_exec_dfs.items()], axis=1)
-    sns.boxplot(data=plot_data, ax=ax2)
-    ax2.set_title("Distribución Tiempos Totales")
-    ax2.set_ylabel("Minutos")
-
-    # Gráfico 3: Porcentaje con transbordo
-    ax3 = plt.subplot2grid((3, 3), (0, 2), colspan=1)
-    transbordo_data = pd.DataFrame({
-        'Modelo': list(first_exec_dfs.keys()),
-        'Porcentaje': [(df['tiempo_transbordo'] > 0).mean() * 100 for df in first_exec_dfs.values()]
-    })
-    sns.barplot(x='Modelo', y='Porcentaje', data=transbordo_data, ax=ax3)
-    ax3.set_title("Pasajeros con Transbordo")
-    ax3.set_ylim(0, 100)
-
-    # Gráfico 4: Percentiles (minutos)
-    ax4 = plt.subplot2grid((3, 3), (1, 0), colspan=1)
-    percentiles = np.arange(0, 100, 5)
-    for name, df in first_exec_dfs.items():
-        ax4.plot(percentiles, np.percentile(df['tiempo_total'], percentiles), label=name, marker='o')
-    ax4.set_title("Percentiles de Tiempo Total")
-    ax4.set_xlabel("Percentil")
-    ax4.set_ylabel("Minutos")
-    ax4.grid(True)
-    ax4.legend()
-
-    # Gráfico 5: Relación espera vs viaje (minutos)
-    ax5 = plt.subplot2grid((3, 3), (1, 1), colspan=1)
-    for name, df in first_exec_dfs.items():
-        ax5.scatter(df['tiempo_espera'], df['tiempo_viaje'], alpha=0.5, label=name)
-    ax5.set_title("Relación Espera vs Viaje")
-    ax5.set_xlabel("Tiempo Espera (minutos)")
-    ax5.set_ylabel("Tiempo Viaje (minutos)")
-    ax5.legend()
-
-    # Gráfico 6: Distribución tiempos de espera (minutos)
-    ax6 = plt.subplot2grid((3, 3), (1, 2), colspan=1)
-    for name, df in first_exec_dfs.items():
-        sns.kdeplot(df['tiempo_espera'], label=name, ax=ax6, fill=True, alpha=0.3)
-    ax6.set_title("Distribución Tiempos de Espera")
-    ax6.set_xlabel("Minutos")
-    ax6.legend()
-
-    # Gráfico 7: Evolución de métricas por ejecución (convertir a minutos)
-    ax7 = plt.subplot2grid((3, 3), (2, 0), colspan=3)
-    for name in model_names:
-        if name in model_details:
-            df = model_details[name].copy()
-            df['avg_total_time'] = df['avg_total_time'] / 60
-            df['std_total_time'] = df['std_total_time'] / 60
-            ax7.plot(df.index, df['avg_total_time'], label=f"{name} (promedio)", marker='o')
-            ax7.fill_between(df.index,
-                             df['avg_total_time'] - df['std_total_time'],
-                             df['avg_total_time'] + df['std_total_time'],
-                             alpha=0.1)
-    ax7.set_title("Evolución del Tiempo Total por Ejecución")
-    ax7.set_xlabel("Nº Ejecución")
-    ax7.set_ylabel("Tiempo Promedio (minutos)")
-    ax7.legend()
-    ax7.grid(True)
-
-    plt.tight_layout()
-    plt.savefig('results/passengers/multi_model_detailed.png', dpi=300, bbox_inches='tight')
-    plt.close()
-
-    return fig
+    ax.set_xlabel("")
+    _guardar_grafico(fig, 'transbordo.png')
 
 
 if __name__ == "__main__":
-    # Definir los modelos a comparar como un diccionario {nombre: patrón}
-    model_patterns = {
-        "BAS-01": "../experimental_tests/BAS-01/*_passengers_results.csv",
-        #"BAS-02": "../experimental_tests/BAS-02/*_passengers_results.csv",
-        "BAS-03": "../experimental_tests/BAS-03/*_passengers_results.csv",
-        "BDI-01": "../experimental_tests/BDI-01/*_passengers_results.csv",
-        #"BDI-02": "../experimental_tests/BDI-02/*_passengers_results.csv",
-        #"BDI-03": "../experimental_tests/BDI-03/*_passengers_results.csv"
+    os.makedirs(RUTA_PASAJEROS, exist_ok=True)
+
+    patrones_modelos = {
+        "BAS_01": "experimental_tests/BAS_01/*_passengers_results.csv",
+        "BDI_01": "experimental_tests/BDI_01/*_passengers_results.csv",
+        "BAS_02": "experimental_tests/BAS_02/*_passengers_results.csv",
+        "BDI_02": "experimental_tests/BDI_02/*_passengers_results.csv",
+        "BAS_03": "experimental_tests/BAS_03/*_passengers_results.csv",
+        "BDI_03": "experimental_tests/BDI_03/*_passengers_results.csv",
+        "BAS_01_IC": "experimental_tests/BAS_01_IC/*_passengers_results.csv",
+        "BDI_01_IC": "experimental_tests/BDI_01_IC/*_passengers_results.csv",
+        "BDI_01_DY": "experimental_tests/BDI_01_DY/*_passengers_results.csv"
     }
 
-    # Comparar todos los modelos
-    comparison_df, model_details = compare_multiple_models(model_patterns)
+    df_comparacion, detalles_modelos = comparar_multiples_modelos(patrones_modelos)
 
-    if comparison_df is not None:
-        # Mostrar resultados en consola
+    if df_comparacion is not None:
         print("\n=== Métricas Agregadas para Todos los Modelos ===")
-        print(comparison_df[['num_executions', 'total_passengers', 'arrived_passengers',
-                             'arrived_percentage', 'std_arrived_percentage',
-                             'avg_total_time', 'std_avg_total_time']])
+        print(df_comparacion[['num_ejecuciones', 'total_pasajeros', 'pasajeros_llegados',
+                         'porcentaje_llegados', 'desviacion_porcentaje_llegados',
+                         'tiempo_total_promedio', 'desviacion_tiempo_total_promedio']])
 
-        # Generar comparaciones por pares
-        pairwise_comparisons = generate_pairwise_comparisons(comparison_df)
-        for comparison_name, diff_df in pairwise_comparisons.items():
-            print(f"\n=== Comparación: {comparison_name} ===")
-            print(diff_df)
+        comparaciones_pareadas = generar_comparaciones_pareadas(df_comparacion)
+        for nombre_comparacion, df_diferencias in comparaciones_pareadas.items():
+            print(f"\n=== Comparación: {nombre_comparacion} ===")
+            print(df_diferencias)
 
-        # Generar gráficos
-        plot_aggregated_comparison(comparison_df)
-        plot_detailed_comparison(model_details, model_patterns.keys())
+        graficar_y_guardar_imagenes0(df_comparacion)
+        graficar_y_guardar_imagenes1(detalles_modelos, list(patrones_modelos.keys()))
 
-        # Guardar resultados en CSV
-        comparison_df.to_csv('results/passengers/model_comparison.csv')
-        print("\nResultados guardados en 'results/passengers/model_comparison.csv'")
+        df_comparacion.to_csv(RUTA_PASAJEROS + 'detalles.csv')
+        print("\nResultados guardados en " + RUTA_PASAJEROS + "detalles.csv'")
