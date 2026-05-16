@@ -214,6 +214,43 @@ def graficar_metricas_agrupadas(df_grafico: pd.DataFrame, metricas: List[str],
     ax.legend(handles=handles, labels=etiquetas_leyenda, loc='upper left')
     _guardar_grafico(fig, nombre_archivo)
 
+def graficar_metrica_individual_1(df_grafico: pd.DataFrame, metrica: str, etiqueta_y: "",
+                                paleta: List[str], nombre_archivo: str,
+                                barra_error: Optional[str] = None) -> None:
+    """Genera una visualización estilizada con valores en azul y etiquetas de modelos rotadas."""
+    df_plot = df_grafico.reset_index()
+
+    # Extraer datos
+    modelos = df_plot['etiqueta'].tolist()
+    valores = [f"{v:.2f}" for v in df_plot[metrica]]
+
+    # Color fijo para los valores
+    color_valores = "#003366"  # Azul oscuro elegante
+
+    # Crear figura con tamaño dinámico
+    fig, ax = plt.subplots(figsize=(len(modelos)*2.2, 3))
+
+    # Limpiar ejes
+    ax.axis("off")
+
+    # Dibujar cada valor y modelo
+    for i, (modelo, valor) in enumerate(zip(modelos, valores)):
+        ax.text(i, 0.6, valor, ha='center', va='bottom',
+                fontsize=14, fontweight='bold', color=color_valores)
+        ax.text(i, 0.4, modelo, ha='center', va='top',
+                fontsize=11, rotation=45, color="#333333")
+
+    # Etiqueta general como título a la izquierda
+    if etiqueta_y:
+        ax.text(-0.5, 1.1, etiqueta_y, fontsize=14, fontweight='bold', ha='left', color="#000000")
+
+    # Ajuste de límites y espaciado
+    ax.set_xlim(-0.5, len(modelos)-0.5)
+    ax.set_ylim(0, 1.2)
+
+    plt.tight_layout()
+    plt.savefig(nombre_archivo, dpi=300, bbox_inches='tight')
+    plt.close()
 
 def graficar_y_guardar_imagenes0(df_comparacion: pd.DataFrame) -> None:
     """Crea gráficos comparativos para múltiples modelos con tiempos en minutos."""
@@ -223,6 +260,8 @@ def graficar_y_guardar_imagenes0(df_comparacion: pd.DataFrame) -> None:
 
     # Gráfico de porcentaje de llegada
     graficar_metrica_individual(df_grafico, 'porcentaje_llegados', 'Tasa de éxito',
+                       paleta, 'tasa_exito.png', 'desviacion_porcentaje_llegados')
+    graficar_metrica_individual_1(df_grafico, 'porcentaje_llegados', '',
                        paleta, 'tasa_exito.png', 'desviacion_porcentaje_llegados')
 
     # Gráfico de tiempo total promedio
